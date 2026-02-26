@@ -1,0 +1,18 @@
+[Unit]
+Description=PTC Cladding Website
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/root/ptc-cladding-website
+ExecStart=/root/ptc-cladding-website/.venv/bin/uvicorn app.main:app --host 127.0.0.1 --port 8082 --workers 2
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=ptc-website
+EnvironmentFile=-/root/ptc-cladding-website/.env
+
+[Install]
+WantedBy=multi-user.target
