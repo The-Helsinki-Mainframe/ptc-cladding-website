@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/style.css?v=7" />
 </head>
 <body>
 
@@ -19,10 +19,10 @@
         <img src="assets/images/img-000.jpg" alt="PTC Cladding" />
       </a>
       <ul class="nav__links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#about">Who We Are</a></li>
+        <li><a href="#services">What We Do</a></li>
+        <li><a href="#projects">Key Projects</a></li>
+        <li><a href="#contact">Get in Touch</a></li>
       </ul>
       <button class="btn btn--orange nav__cta" onclick="openModal('bookModal')">Book a Meeting</button>
       <button class="nav__burger" id="navBurger" aria-label="Menu">
@@ -30,10 +30,10 @@
       </button>
     </div>
     <div class="nav__mobile" id="navMobile">
-      <a href="#about" class="nav__mobile-link">About</a>
-      <a href="#services" class="nav__mobile-link">Services</a>
-      <a href="#projects" class="nav__mobile-link">Projects</a>
-      <a href="#contact" class="nav__mobile-link">Contact</a>
+      <a href="#about" class="nav__mobile-link">Who We Are</a>
+      <a href="#services" class="nav__mobile-link">What We Do</a>
+      <a href="#projects" class="nav__mobile-link">Key Projects</a>
+      <a href="#contact" class="nav__mobile-link">Get in Touch</a>
       <button class="btn btn--orange" style="margin-top:1rem;width:100%" onclick="openModal('bookModal');closeMobileNav()">Book a Meeting</button>
     </div>
   </nav>
@@ -41,11 +41,10 @@
   <!-- ═══════════════════════════════════════════════════════════ HERO -->
   <section class="hero" id="hero">
     <div class="hero__bg">
-      <img src="assets/images/img-001.jpg" alt="PTC Cladding installation" />
+      <img src="assets/images/hero.jpg" alt="LIMS London" />
       <div class="hero__overlay"></div>
     </div>
-    <div class="hero__content container">
-      <span class="hero__eyebrow">Established 2015</span>
+    <div class="hero__content">
       <h1 class="hero__headline">Precision<br/>Facades.<br/><em>European Scale.</em></h1>
       <p class="hero__sub">Trusted by leading developers across the UK, Scandinavia and the Baltics. We deliver high-volume, technically complex cladding with zero compromise on quality.</p>
       <div class="hero__actions">
@@ -61,27 +60,24 @@
   </section>
 
   <!-- ═══════════════════════════════════════════════════════════ STATS -->
-  <section class="stats" id="stats">
-    <div class="container stats__grid">
-      <div class="stat" data-target="11" data-suffix=" Years">
-        <span class="stat__number" data-count="11">0</span>
-        <span class="stat__suffix"> Yrs</span>
-        <p class="stat__label">In Business</p>
-      </div>
-      <div class="stat" data-target="64100" data-suffix="m²">
-        <span class="stat__number" data-count="64100">0</span>
-        <span class="stat__suffix">m²</span>
-        <p class="stat__label">Façade Delivered</p>
-      </div>
-      <div class="stat" data-target="3" data-suffix="">
-        <span class="stat__number" data-count="3">0</span>
-        <span class="stat__suffix"></span>
-        <p class="stat__label">Countries</p>
-      </div>
-      <div class="stat" data-target="8" data-suffix="">
-        <span class="stat__number" data-count="8">0</span>
-        <span class="stat__suffix"></span>
-        <p class="stat__label">Major Projects</p>
+  <section class="stats section" id="stats">
+    <div class="container">
+      <div class="stats__grid">
+        <div class="stat bento-card fade-up">
+          <span class="stat__number" data-count="11">0</span>
+          <span class="stat__suffix">Years</span>
+          <p class="stat__label">In Business</p>
+        </div>
+        <div class="stat bento-card fade-up">
+          <span class="stat__number" data-count="100000" data-plus="true">0</span>
+          <span class="stat__suffix">m²</span>
+          <p class="stat__label">Façade Delivered</p>
+        </div>
+        <div class="stat bento-card fade-up">
+          <span class="stat__number" data-count="4">0</span>
+          <span class="stat__suffix">Countries</span>
+          <p class="stat__label">Operating Across</p>
+        </div>
       </div>
     </div>
   </section>
@@ -89,7 +85,7 @@
   <!-- ═══════════════════════════════════════════════════════════ ABOUT -->
   <section class="about section" id="about">
     <div class="container about__grid">
-      <div class="about__text">
+      <div class="about__text fade-up">
         <span class="eyebrow">Who We Are</span>
         <h2 class="section-title">Built on Precision.<br/>Proven at Scale.</h2>
         <p>Established in 2015, PTC Cladding has become a trusted partner in the European cladding industry, specialising in the installation of high-volume and technically complex facades and prefabricated structures.</p>
@@ -110,22 +106,21 @@
           </div>
         </div>
       </div>
-      <div class="about__image bento-card">
-        <img src="assets/images/img-011.jpg" alt="PTC Cladding project" />
+      <div class="about__image bento-card fade-up">
+        <img src="assets/images/about-installation.jpg" alt="PTC Cladding installation" />
       </div>
     </div>
   </section>
 
   <!-- ═══════════════════════════════════════════════════════════ SERVICES -->
-  <section class="services section section--dark" id="services">
+  <section class="services section" id="services">
     <div class="container">
-      <span class="eyebrow eyebrow--light">What We Do</span>
-      <h2 class="section-title section-title--light">Three Core Disciplines.<br/>One Delivery Team.</h2>
+      <span class="eyebrow">What We Do</span>
+      <h2 class="section-title">Three Core Disciplines.<br/>One Delivery Team.</h2>
       <div class="services__bento">
 
-        <div class="bento-card bento-card--dark services__card">
+        <div class="bento-card services__card fade-up">
           <div class="services__icon">
-            <!-- Cladding: building facade with panels -->
             <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
               <rect x="6" y="8" width="36" height="34" rx="1"/>
               <line x1="6" y1="19" x2="42" y2="19"/>
@@ -147,9 +142,8 @@
           </ul>
         </div>
 
-        <div class="bento-card bento-card--dark services__card">
+        <div class="bento-card services__card fade-up">
           <div class="services__icon">
-            <!-- Prefab: modular panels with arrows -->
             <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
               <rect x="4" y="16" width="18" height="16" rx="1"/>
               <rect x="26" y="16" width="18" height="16" rx="1"/>
@@ -172,9 +166,8 @@
           </ul>
         </div>
 
-        <div class="bento-card bento-card--dark services__card">
+        <div class="bento-card services__card fade-up">
           <div class="services__icon">
-            <!-- Glazed: window/curtain wall icon -->
             <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
               <rect x="6" y="6" width="36" height="36" rx="1"/>
               <line x1="6" y1="24" x2="42" y2="24"/>
@@ -203,141 +196,195 @@
     <div class="container">
       <span class="eyebrow">Key Projects</span>
       <h2 class="section-title">Delivered Across<br/>Europe's Skylines.</h2>
-      <div class="projects__bento">
 
-        <div class="bento-card project-card project-card--wide">
-          <img src="assets/images/img-013.jpg" alt="Preses Nams, Riga" class="project-card__img" />
-          <div class="project-card__overlay"></div>
-          <div class="project-card__content">
-            <div class="project-card__meta">
-              <span class="project-card__location">📍 Riga, Latvia</span>
-              <span class="project-card__tag">In Progress</span>
+      <div class="projects__rows">
+
+        <!-- Riga Central Station -->
+        <div class="project-row fade-up">
+          <div class="project-row__photo bento-card">
+            <img src="assets/images/proj-riga-station-1.jpg" alt="Riga Central Station, Latvia" />
+          </div>
+          <div class="project-row__photo project-row__photo--secondary bento-card">
+            <img src="assets/images/proj-riga-station-2.jpg" alt="Riga Central Station, Latvia" />
+          </div>
+          <div class="project-row__info bento-card">
+            <div class="project-info__meta">
+              <span class="project-info__tag project-info__tag--live">In Progress</span>
+              <span class="project-info__location">📍 Riga, Latvia</span>
+            </div>
+            <h3>Riga Central Station</h3>
+            <p>Highly complex steel glazed facades, including curved roof elements and curved arch cladding for the Rail Baltica Riga Central Station development. Project delivered in partnership with Simeon (Italy).</p>
+            <div class="project-info__stats">
+              <div class="project-info__stat"><span class="project-info__stat-val">4,000 m²</span><span class="project-info__stat-lbl">Scope</span></div>
+              <div class="project-info__stat"><span class="project-info__stat-val">2025–</span><span class="project-info__stat-lbl">Period</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Preses Nams -->
+        <div class="project-row fade-up">
+          <div class="project-row__photo bento-card">
+            <img src="assets/images/proj-minories-1.jpg" alt="Preses Nams, Riga" />
+          </div>
+          <div class="project-row__photo project-row__photo--secondary bento-card">
+            <img src="assets/images/proj-preses-nams-2.jpg" alt="Preses Nams, Riga" />
+          </div>
+          <div class="project-row__info bento-card">
+            <div class="project-info__meta">
+              <span class="project-info__location">📍 Riga, Latvia</span>
             </div>
             <h3>Preses Nams</h3>
-            <p>10,600m² of aluminium unitised facade installation in partnership with Staticus.</p>
-            <div class="project-card__stats">
-              <span>10,600 m²</span>
-              <span>0.8M EUR</span>
-              <span>2024–</span>
+            <p>10,600m² of aluminium unitised facade installation in partnership with Staticus. Complex curtain wall and cladding scope on a landmark Riga media campus.</p>
+            <div class="project-info__stats">
+              <div class="project-info__stat"><span class="project-info__stat-val">10,600 m²</span><span class="project-info__stat-lbl">Scope</span></div>
+              <div class="project-info__stat"><span class="project-info__stat-val">2024–</span><span class="project-info__stat-lbl">Period</span></div>
             </div>
           </div>
         </div>
 
-        <div class="bento-card project-card">
-          <img src="assets/images/img-005.jpg" alt="Minories, London" class="project-card__img" />
-          <div class="project-card__overlay"></div>
-          <div class="project-card__content">
-            <div class="project-card__meta">
-              <span class="project-card__location">📍 London, UK</span>
+        <!-- Minories -->
+        <div class="project-row fade-up">
+          <div class="project-row__photo bento-card">
+            <img src="assets/images/proj-wembley-1.jpg" alt="Minories, London" />
+          </div>
+          <div class="project-row__photo project-row__photo--secondary bento-card">
+            <img src="assets/images/proj-minories-2.jpg" alt="Minories, London" />
+          </div>
+          <div class="project-row__info bento-card">
+            <div class="project-info__meta">
+              <span class="project-info__location">📍 London, UK</span>
             </div>
             <h3>Minories</h3>
-            <p>6,000m² full facade envelope — corrugated rainscreens, fascias, soffits &amp; balustrading.</p>
-            <div class="project-card__stats">
-              <span>6,000 m²</span>
-              <span>1.5M EUR</span>
-              <span>2023–2024</span>
+            <p>6,000m² full facade envelope — corrugated rainscreens, fascias, soffits and balustrading. A technically demanding package across a complex city-centre site.</p>
+            <div class="project-info__stats">
+              <div class="project-info__stat"><span class="project-info__stat-val">6,000 m²</span><span class="project-info__stat-lbl">Scope</span></div>
+              <div class="project-info__stat"><span class="project-info__stat-val">2023–2024</span><span class="project-info__stat-lbl">Period</span></div>
             </div>
           </div>
         </div>
 
-        <div class="bento-card project-card">
-          <img src="assets/images/img-010.jpg" alt="Wembley, London" class="project-card__img" />
-          <div class="project-card__overlay"></div>
-          <div class="project-card__content">
-            <div class="project-card__meta">
-              <span class="project-card__location">📍 London, UK</span>
+        <!-- Wembley -->
+        <div class="project-row fade-up">
+          <div class="project-row__photo bento-card">
+            <img src="assets/images/proj-lims-1.jpg" alt="Wembley, London" />
+          </div>
+          <div class="project-row__photo project-row__photo--secondary bento-card">
+            <img src="assets/images/proj-wembley-2.jpg" alt="Wembley, London" />
+          </div>
+          <div class="project-row__info bento-card">
+            <div class="project-info__meta">
+              <span class="project-info__location">📍 London, UK</span>
             </div>
             <h3>Wembley</h3>
-            <p>7,500m² aluminium cladding with architectural fins and 1,500m² aluminium curtain walls.</p>
-            <div class="project-card__stats">
-              <span>9,000 m²</span>
-              <span>1.3M EUR</span>
-              <span>2023–2024</span>
+            <p>7,500m² aluminium cladding with architectural fins and 1,500m² aluminium curtain walls on a major residential development in the Wembley regeneration zone.</p>
+            <div class="project-info__stats">
+              <div class="project-info__stat"><span class="project-info__stat-val">9,000 m²</span><span class="project-info__stat-lbl">Scope</span></div>
+              <div class="project-info__stat"><span class="project-info__stat-val">2023–2024</span><span class="project-info__stat-lbl">Period</span></div>
             </div>
           </div>
         </div>
 
-        <div class="bento-card project-card">
-          <img src="assets/images/img-008.jpg" alt="LIMS, London" class="project-card__img" />
-          <div class="project-card__overlay"></div>
-          <div class="project-card__content">
-            <div class="project-card__meta">
-              <span class="project-card__location">📍 London, UK</span>
+        <!-- LIMS -->
+        <div class="project-row fade-up">
+          <div class="project-row__photo bento-card">
+            <img src="assets/images/proj-white-city-1.jpg" alt="LIMS, London" />
+          </div>
+          <div class="project-row__photo project-row__photo--secondary bento-card">
+            <img src="assets/images/proj-lims-2.jpg" alt="LIMS, London" />
+          </div>
+          <div class="project-row__info bento-card">
+            <div class="project-info__meta">
+              <span class="project-info__location">📍 London, UK</span>
             </div>
             <h3>LIMS</h3>
-            <p>10,000m² full facade — anodized &amp; perforated aluminium, curtain walls, skylights &amp; fins. Home of the London Institute of Medical Sciences.</p>
-            <div class="project-card__stats">
-              <span>10,000 m²</span>
-              <span>1.4M EUR</span>
-              <span>2022–2023</span>
+            <p>10,000m² full facade — anodized and perforated aluminium, curtain walls, skylights and fins. Home of the London Institute of Medical Sciences.</p>
+            <div class="project-info__stats">
+              <div class="project-info__stat"><span class="project-info__stat-val">10,000 m²</span><span class="project-info__stat-lbl">Scope</span></div>
+              <div class="project-info__stat"><span class="project-info__stat-val">2022–2023</span><span class="project-info__stat-lbl">Period</span></div>
             </div>
           </div>
         </div>
 
-        <div class="bento-card project-card project-card--wide">
-          <img src="assets/images/img-017.jpg" alt="White City, London" class="project-card__img" />
-          <div class="project-card__overlay"></div>
-          <div class="project-card__content">
-            <div class="project-card__meta">
-              <span class="project-card__location">📍 London, UK</span>
+        <!-- White City -->
+        <div class="project-row fade-up">
+          <div class="project-row__photo bento-card">
+            <img src="assets/images/proj-ess-1.jpg" alt="White City, London" />
+          </div>
+          <div class="project-row__photo project-row__photo--secondary bento-card">
+            <img src="assets/images/proj-white-city-2.jpg" alt="White City, London" />
+          </div>
+          <div class="project-row__info bento-card">
+            <div class="project-info__meta">
+              <span class="project-info__location">📍 London, UK</span>
             </div>
             <h3>White City</h3>
             <p>9,200m² of GRC panels and architectural cladding elements on a 27-storey building, including insulation and firestopping solutions.</p>
-            <div class="project-card__stats">
-              <span>9,200 m²</span>
-              <span>1.5M EUR</span>
-              <span>2022</span>
+            <div class="project-info__stats">
+              <div class="project-info__stat"><span class="project-info__stat-val">9,200 m²</span><span class="project-info__stat-lbl">Scope</span></div>
+              <div class="project-info__stat"><span class="project-info__stat-val">2022</span><span class="project-info__stat-lbl">Period</span></div>
             </div>
           </div>
         </div>
 
-        <div class="bento-card project-card">
-          <img src="assets/images/img-012.jpg" alt="ESS Campus, Lund" class="project-card__img" />
-          <div class="project-card__overlay"></div>
-          <div class="project-card__content">
-            <div class="project-card__meta">
-              <span class="project-card__location">📍 Lund, Sweden</span>
+        <!-- ESS Campus -->
+        <div class="project-row fade-up">
+          <div class="project-row__photo bento-card">
+            <img src="assets/images/proj-ess-left.jpg" alt="ESS Campus, Lund" />
+          </div>
+          <div class="project-row__photo project-row__photo--secondary bento-card">
+            <img src="assets/images/proj-ess-2.jpg" alt="ESS Campus, Lund" />
+          </div>
+          <div class="project-row__info bento-card">
+            <div class="project-info__meta">
+              <span class="project-info__location">📍 Lund, Sweden</span>
             </div>
             <h3>ESS Campus</h3>
-            <p>8,300m² aluminium rainscreen &amp; curtain walls at the European Spallation Source research centre.</p>
-            <div class="project-card__stats">
-              <span>8,300 m²</span>
-              <span>0.7M EUR</span>
-              <span>2020–2021</span>
+            <p>8,300m² aluminium rainscreen and curtain walls at the European Spallation Source — one of Europe's most complex scientific research facilities.</p>
+            <div class="project-info__stats">
+              <div class="project-info__stat"><span class="project-info__stat-val">8,300 m²</span><span class="project-info__stat-lbl">Scope</span></div>
+              <div class="project-info__stat"><span class="project-info__stat-val">2020–2021</span><span class="project-info__stat-lbl">Period</span></div>
             </div>
           </div>
         </div>
 
-        <div class="bento-card project-card">
-          <img src="assets/images/img-014.jpg" alt="Tyresso, Stockholm" class="project-card__img" />
-          <div class="project-card__overlay"></div>
-          <div class="project-card__content">
-            <div class="project-card__meta">
-              <span class="project-card__location">📍 Stockholm, Sweden</span>
+        <!-- Tyresso -->
+        <div class="project-row fade-up">
+          <div class="project-row__photo bento-card">
+            <img src="assets/images/proj-tyresso-1.jpg" alt="Tyresso, Stockholm" />
+          </div>
+          <div class="project-row__photo project-row__photo--secondary bento-card">
+            <img src="assets/images/proj-tyresso-right.jpg" alt="Tyresso, Stockholm" />
+          </div>
+          <div class="project-row__info bento-card">
+            <div class="project-info__meta">
+              <span class="project-info__location">📍 Stockholm, Sweden</span>
             </div>
             <h3>Tyresso</h3>
-            <p>3,000m² mixed Corten steel, timber &amp; Kingspan facade cladding including architectural pergolas.</p>
-            <div class="project-card__stats">
-              <span>3,000 m²</span>
-              <span>0.4M EUR</span>
-              <span>2019–2020</span>
+            <p>3,000m² mixed Corten steel, timber and Kingspan facade cladding including architectural pergolas on a high-specification residential development.</p>
+            <div class="project-info__stats">
+              <div class="project-info__stat"><span class="project-info__stat-val">3,000 m²</span><span class="project-info__stat-lbl">Scope</span></div>
+              <div class="project-info__stat"><span class="project-info__stat-val">2019–2020</span><span class="project-info__stat-lbl">Period</span></div>
             </div>
           </div>
         </div>
 
-        <div class="bento-card project-card">
-          <img src="assets/images/img-006.jpg" alt="College Road, London" class="project-card__img" />
-          <div class="project-card__overlay"></div>
-          <div class="project-card__content">
-            <div class="project-card__meta">
-              <span class="project-card__location">📍 London, UK</span>
+        <!-- College Road -->
+        <div class="project-row fade-up">
+          <div class="project-row__photo bento-card">
+            <img src="assets/images/proj-college-rd-2.jpg" alt="College Road, London" />
+          </div>
+          <div class="project-row__photo project-row__photo--secondary bento-card">
+            <img src="assets/images/proj-college-rd-1.jpg" alt="College Road, London" />
+          </div>
+          <div class="project-row__info bento-card">
+            <div class="project-info__meta">
+              <span class="project-info__location">📍 London, UK</span>
             </div>
             <h3>College Road</h3>
-            <p>8,000m² GRC panels on a 20-storey building, including insulation and firestopping solutions.</p>
-            <div class="project-card__stats">
-              <span>8,000 m²</span>
-              <span>1.0M EUR</span>
-              <span>2017–2018</span>
+            <p>8,000m² GRC panels on a 20-storey building, including insulation and firestopping solutions. One of our earliest and most technically complex deliveries.</p>
+            <div class="project-info__stats">
+              <div class="project-info__stat"><span class="project-info__stat-val">8,000 m²</span><span class="project-info__stat-lbl">Scope</span></div>
+              <div class="project-info__stat"><span class="project-info__stat-val">2017–2018</span><span class="project-info__stat-lbl">Period</span></div>
             </div>
           </div>
         </div>
@@ -347,54 +394,78 @@
   </section>
 
   <!-- ═══════════════════════════════════════════════════════════ CONTACT -->
-  <section class="contact section section--dark" id="contact">
-    <div class="container contact__grid">
-      <div class="contact__left">
-        <span class="eyebrow eyebrow--light">Contact Us</span>
-        <h2 class="section-title section-title--light">Let's Talk<br/>About Your Project.</h2>
-        <p class="contact__intro">Whether you're scoping a new facade project or looking for a specialist delivery partner, we'd love to hear from you.</p>
-        <div class="contact__person">
-          <img src="assets/images/img-018.jpg" alt="Lauris Lakotko, CEO" class="contact__portrait" />
-          <div class="contact__person-info">
-            <strong>Lauris Lakotko</strong>
-            <span>CEO &amp; Founder</span>
-            <a href="mailto:info@ptcgr.com">info@ptcgr.com</a>
-            <a href="tel:+37126953583">+371 26 953 583</a>
+  <section class="contact section" id="contact">
+    <div class="container">
+      <span class="eyebrow">Get in Touch</span>
+      <h2 class="section-title">Let's Talk<br/>About Your Project.</h2>
+      <div class="contact__grid">
+
+        <div class="contact__left bento-card fade-up">
+          <div class="contact__person">
+            <img src="assets/images/proj-lauris.jpg" alt="Lauris Lakotko, CEO" class="contact__portrait" />
+            <div class="contact__person-info">
+              <strong>Lauris Lakotko</strong>
+              <span>CEO &amp; Founder</span>
+            </div>
+          </div>
+          <div class="contact__details">
+            <a href="mailto:info@ptcgr.com" class="contact__detail-row">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              info@ptcgr.com
+            </a>
+            <a href="tel:+37126953583" class="contact__detail-row">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13 19.79 19.79 0 0 1 1.61 4.4 2 2 0 0 1 3.58 2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.16 6.16l.91-.82a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 17.5z"/></svg>
+              +371 26 953 583
+            </a>
+            <a href="https://maps.google.com/?q=71-75+Shelton+Street,+London+WC2H+9JQ" target="_blank" class="contact__detail-row">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+              71-75 Shelton Street, London, WC2H 9JQ
+            </a>
+          </div>
+          <div class="contact__ctas">
+            <button class="btn btn--orange" onclick="openModal('bookModal')">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              Book a Meeting
+            </button>
+            <button class="btn btn--ghost-dark" onclick="openModal('brochureModal')">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download Brochure
+            </button>
           </div>
         </div>
-      </div>
-      <div class="contact__right">
-        <div class="contact__actions">
-          <button class="contact__action-card" onclick="openModal('bookModal')">
-            <div class="contact__action-icon">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-                <line x1="16" y1="2" x2="16" y2="6"/>
-                <line x1="8" y1="2" x2="8" y2="6"/>
-                <line x1="3" y1="10" x2="21" y2="10"/>
-              </svg>
-            </div>
-            <div>
-              <strong>Book a Meeting</strong>
-              <p>Choose a time that works for you. Lauris will confirm within 24 hours.</p>
-            </div>
-            <svg class="contact__action-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </button>
-          <button class="contact__action-card" onclick="openModal('brochureModal')">
-            <div class="contact__action-icon">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                <polyline points="7 10 12 15 17 10"/>
-                <line x1="12" y1="15" x2="12" y2="3"/>
-              </svg>
-            </div>
-            <div>
-              <strong>Download Brochure</strong>
-              <p>Get our full company profile and project portfolio as a PDF.</p>
-            </div>
-            <svg class="contact__action-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </button>
+
+        <div class="contact__right bento-card fade-up">
+          <h3 class="contact__form-title">Send a Message</h3>
+          <p class="contact__form-sub">Whether you're scoping a new facade project or looking for a specialist delivery partner, we'd love to hear from you.</p>
+          <div id="contactFormWrap">
+            <form class="contact-form" id="contactForm">
+              <div class="form-group">
+                <label>Full Name *</label>
+                <input type="text" name="name" required placeholder="John Smith" />
+              </div>
+              <div class="form-group">
+                <label>Email *</label>
+                <input type="email" name="email" required placeholder="john@company.com" />
+              </div>
+              <div class="form-group">
+                <label>Message *</label>
+                <textarea name="message" rows="4" required placeholder="Tell us about your project…"></textarea>
+              </div>
+              <div class="form-actions" style="justify-content:flex-end">
+                <button type="submit" class="btn btn--orange" id="contactSubmitBtn">Send Message</button>
+              </div>
+            </form>
+          </div>
+          <div id="contactSuccess" style="display:none" class="contact__success">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#FF6200" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 15 10"/></svg>
+            <h4>Message sent!</h4>
+            <p>Thanks for reaching out — we'll be back to you shortly.</p>
+          </div>
         </div>
+
       </div>
     </div>
   </section>
@@ -413,62 +484,65 @@
 
   <!-- ═══════════════════════════════════════════════════════════ MODAL: BOOK -->
   <div class="modal-overlay" id="bookModal" onclick="handleOverlayClick(event,'bookModal')">
-    <div class="modal">
+    <div class="modal modal--wide">
       <button class="modal__close" onclick="closeModal('bookModal')">&times;</button>
       <div class="modal__header">
         <h3>Book a Meeting</h3>
-        <p>Select a date and time, then fill in your details.</p>
+        <p>Pick a date, choose a time, fill in your details — Lauris will confirm within 24 hours.</p>
       </div>
-      <div class="modal__body">
-        <!-- Step 1: Slot picker -->
-        <div id="bookStep1">
-          <p class="modal__step-label">Step 1 — Choose a date &amp; time</p>
-          <div class="slot-picker" id="slotPicker">
-            <!-- Generated by JS -->
-          </div>
-        </div>
-        <!-- Step 2: Contact form -->
-        <div id="bookStep2" style="display:none">
-          <p class="modal__step-label">Step 2 — Your details</p>
-          <div class="selected-slot-display" id="selectedSlotDisplay"></div>
-          <form class="modal-form" id="bookForm">
-            <div class="form-row">
-              <div class="form-group">
-                <label>Full Name *</label>
-                <input type="text" name="name" required placeholder="John Smith" />
-              </div>
-              <div class="form-group">
-                <label>Email *</label>
-                <input type="email" name="email" required placeholder="john@company.com" />
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-group">
-                <label>Company</label>
-                <input type="text" name="company" placeholder="Your Company Ltd" />
-              </div>
-              <div class="form-group">
-                <label>Phone</label>
-                <input type="tel" name="phone" placeholder="+44 7700 000000" />
-              </div>
+      <div id="bookFormWrap" class="modal__body modal__body--calendar">
+        <div class="cal-form">
+          <h4 class="cal-section-title">Your Details</h4>
+          <form id="bookForm">
+            <div class="form-group">
+              <label>Full Name *</label>
+              <input type="text" name="name" required placeholder="John Smith" />
             </div>
             <div class="form-group">
-              <label>Tell us about your project</label>
-              <textarea name="message" rows="3" placeholder="Brief description of your project or questions…"></textarea>
+              <label>Email *</label>
+              <input type="email" name="email" required placeholder="john@company.com" />
             </div>
-            <div class="form-actions">
-              <button type="button" class="btn btn--ghost" onclick="goToBookStep1()">← Back</button>
-              <button type="submit" class="btn btn--orange">Confirm Booking</button>
+            <div class="form-group">
+              <label>Company</label>
+              <input type="text" name="company" placeholder="Your Company Ltd" />
             </div>
+            <div class="form-group">
+              <label>Notes</label>
+              <textarea name="message" rows="3" placeholder="Brief description of your project…"></textarea>
+            </div>
+            <div class="cal-selected-slot" id="calSelectedSlot">
+              No date &amp; time selected yet
+            </div>
+            <button type="submit" class="btn btn--orange" style="width:100%;justify-content:center;margin-top:.5rem" id="bookSubmitBtn">Confirm Booking</button>
           </form>
         </div>
-        <!-- Step 3: Confirmation -->
-        <div id="bookStep3" style="display:none" class="modal__success">
-          <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#FF6200" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 15 10"/></svg>
-          <h4>Meeting Request Sent!</h4>
-          <p>Lauris will confirm your meeting within 24 hours. Check your inbox for a confirmation email.</p>
-          <button class="btn btn--orange" onclick="closeModal('bookModal')">Done</button>
+        <div class="cal-grid">
+          <div class="cal-nav">
+            <button class="cal-nav__btn" id="calPrev" aria-label="Previous month">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <span class="cal-nav__label" id="calMonthLabel"></span>
+            <button class="cal-nav__btn" id="calNext" aria-label="Next month">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+          </div>
+          <div class="cal-days-header">
+            <span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span><span>Su</span>
+          </div>
+          <div class="cal-days-grid" id="calDaysGrid"></div>
         </div>
+        <div class="cal-slots">
+          <h4 class="cal-section-title" id="calSlotsTitle">Select a date</h4>
+          <div class="cal-slots__list" id="calSlotsList">
+            <p class="cal-slots__placeholder">Choose a date on the calendar to see available times.</p>
+          </div>
+        </div>
+      </div>
+      <div id="bookSuccess" style="display:none" class="modal__success modal__body">
+        <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#FF6200" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 15 10"/></svg>
+        <h4>Meeting Request Sent!</h4>
+        <p>Lauris will confirm your meeting within 24 hours. Check your inbox for a confirmation email.</p>
+        <button class="btn btn--orange" onclick="closeModal('bookModal')">Done</button>
       </div>
     </div>
   </div>
@@ -505,7 +579,7 @@
               </div>
             </div>
             <div class="form-actions" style="justify-content:flex-end">
-              <button type="submit" class="btn btn--orange">Download PDF</button>
+              <button type="submit" class="btn btn--orange" id="brochureSubmitBtn">Download PDF</button>
             </div>
           </form>
         </div>
@@ -519,6 +593,6 @@
     </div>
   </div>
 
-  <script src="js/app.js"></script>
+  <script src="js/app.js?v=4"></script>
 </body>
 </html>

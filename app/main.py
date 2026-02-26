@@ -64,6 +64,13 @@ def init_db():
                 phone      TEXT,
                 created_at TEXT NOT NULL
             );
+            CREATE TABLE IF NOT EXISTS contact_messages (
+                id         INTEGER PRIMARY KEY AUTOINCREMENT,
+                name       TEXT NOT NULL,
+                email      TEXT NOT NULL,
+                message    TEXT,
+                created_at TEXT NOT NULL
+            );
         """)
         conn.commit()
 
@@ -104,6 +111,17 @@ class BookingRequest(BaseModel):
 
 class BrochureRequest(BaseModel):
     name: str; email: str; company: str = ""; phone: str = ""
+
+    @field_validator("name", "email")
+    @classmethod
+    def not_empty(cls, v):
+        v = v.strip()
+        if not v:
+            raise ValueError("required")
+        return v
+
+class ContactRequest(BaseModel):
+    name: str; email: str; message: str = ""
 
     @field_validator("name", "email")
     @classmethod
@@ -178,6 +196,33 @@ def api_brochure(req: BrochureRequest):
 <p style="font-family:sans-serif;color:#aaa;font-size:11px;margin-top:16px">Submitted {now} UTC · ptc.moosehq.lv</p>"""
     )
     log.info("Brochure: %s <%s>", req.name, req.email)
+    return {"status": "ok"}
+
+@app.post("/api/contact")
+def api_contact(req: ContactRequest):
+    now = datetime.utcnow().isoformat()
+    try:
+        with get_db() as conn:
+            conn.execute(
+                "INSERT INTO contact_messages (name,email,message,created_at) VALUES(?,?,?,?)",
+                (req.name, req.email, req.message, now)
+            )
+            conn.commit()
+    except Exception as e:
+        log.error("DB contact error: %s", e)
+        raise HTTPException(500, "Database error")
+
+    send_email(
+        f"Website Enquiry: {req.name}",
+        f"""<h2 style="font-family:sans-serif">New Enquiry — PTC Cladding</h2>
+<table style="font-family:sans-serif;border-collapse:collapse">
+  <tr><td style="padding:6px 12px;color:#666">Name</td><td style="padding:6px 12px;font-weight:bold">{req.name}</td></tr>
+  <tr><td style="padding:6px 12px;color:#666">Email</td><td style="padding:6px 12px"><a href="mailto:{req.email}">{req.email}</a></td></tr>
+  <tr><td style="padding:6px 12px;color:#666">Message</td><td style="padding:6px 12px">{req.message or '—'}</td></tr>
+</table>
+<p style="font-family:sans-serif;color:#aaa;font-size:11px;margin-top:16px">Submitted {now} UTC · ptc.moosehq.lv</p>"""
+    )
+    log.info("Contact: %s <%s>", req.name, req.email)
     return {"status": "ok"}
 
 # Static files — mounted LAST (catches everything not matched above)

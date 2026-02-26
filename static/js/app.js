@@ -1,14 +1,14 @@
 'use strict';
 
 /* ═══════════════════════════════════════════ NAV */
-const nav = document.getElementById('nav');
-const navBurger = document.getElementById('navBurger');
-const navMobile = document.getElementById('navMobile');
+const nav        = document.getElementById('nav');
+const navBurger  = document.getElementById('navBurger');
+const navMobile  = document.getElementById('navMobile');
 
 window.addEventListener('scroll', () => {
   nav.style.background = window.scrollY > 40
-    ? 'rgba(10,10,10,0.98)'
-    : 'rgba(10,10,10,0.92)';
+    ? 'rgba(10,10,10,0.75)'
+    : 'rgba(10,10,10,0.45)';
 }, { passive: true });
 
 navBurger.addEventListener('click', () => {
@@ -19,48 +19,38 @@ function closeMobileNav() {
   navMobile.classList.remove('open');
 }
 
-// Close mobile nav on link click
 document.querySelectorAll('.nav__mobile-link').forEach(link => {
   link.addEventListener('click', closeMobileNav);
 });
 
 /* ═══════════════════════════════════════════ SCROLL ANIMATIONS */
-const observer = new IntersectionObserver((entries) => {
+const fadeObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add('visible');
     }
   });
-}, { threshold: 0.1 });
+}, { threshold: 0.08 });
 
-document.querySelectorAll('.bento-card, .stat, .about__text, .contact__person, .contact__actions').forEach(el => {
-  el.classList.add('fade-up');
-  observer.observe(el);
-});
+document.querySelectorAll('.fade-up').forEach(el => fadeObserver.observe(el));
 
 /* ═══════════════════════════════════════════ COUNTER ANIMATION */
-function animateCounter(el, target, duration = 1800) {
-  const isLarge = target > 999;
-  let start = 0;
+function animateCounter(el, target, hasPlus, duration = 3500) {
+  const isLarge = target > 9999;
   const startTime = performance.now();
 
   function step(now) {
-    const elapsed = now - startTime;
-    const progress = Math.min(elapsed / duration, 1);
-    // Ease out expo
-    const eased = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
-    const current = Math.floor(eased * target);
+    const progress = Math.min((now - startTime) / duration, 1);
+    const eased    = 1 - Math.pow(1 - progress, 4); // ease-out quart
+    const current  = Math.floor(eased * target);
 
-    el.textContent = isLarge
-      ? current.toLocaleString('en-GB')
-      : current;
+    el.textContent = isLarge ? current.toLocaleString('en-GB') : current;
+    if (hasPlus && progress >= 1) el.textContent += '+';
 
-    if (progress < 1) {
-      requestAnimationFrame(step);
-    } else {
-      el.textContent = isLarge
-        ? target.toLocaleString('en-GB')
-        : target;
+    if (progress < 1) requestAnimationFrame(step);
+    else {
+      el.textContent = isLarge ? target.toLocaleString('en-GB') : String(target);
+      if (hasPlus) el.textContent += '+';
     }
   }
   requestAnimationFrame(step);
@@ -69,182 +59,208 @@ function animateCounter(el, target, duration = 1800) {
 const counterObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      const el = entry.target;
+      const el     = entry.target;
       const target = parseInt(el.dataset.count, 10);
-      animateCounter(el, target);
+      const hasPlus = el.dataset.plus === 'true';
+      animateCounter(el, target, hasPlus);
       counterObserver.unobserve(el);
     }
   });
 }, { threshold: 0.5 });
 
-document.querySelectorAll('[data-count]').forEach(el => {
-  counterObserver.observe(el);
-});
+document.querySelectorAll('[data-count]').forEach(el => counterObserver.observe(el));
 
-/* ═══════════════════════════════════════════ MEETING SLOT GENERATION */
-// Seeded LCG PRNG — deterministic per date string
+/* ═══════════════════════════════════════════ CALENDAR BOOKING */
+// Seeded PRNG for deterministic slot generation per date
 function seededRNG(seed) {
   let s = seed;
-  return function() {
+  return function () {
     s = (s * 1664525 + 1013904223) & 0x7fffffff;
     return s / 0x7fffffff;
   };
 }
-
-function stringToSeed(str) {
-  let hash = 0;
+function strToSeed(str) {
+  let h = 0;
   for (let i = 0; i < str.length; i++) {
-    hash = ((hash << 5) - hash + str.charCodeAt(i)) | 0;
+    h = ((h << 5) - h + str.charCodeAt(i)) | 0;
   }
-  return Math.abs(hash);
+  return Math.abs(h);
 }
 
-const ALL_SLOTS = [
-  '09:00', '09:30', '10:00', '10:30', '11:00', '11:30',
-  '13:00', '13:30', '14:00', '14:30', '15:00', '15:30',
-  '16:00', '16:30'
-];
+const ALL_TIMES = ['09:00','09:30','10:00','10:30','11:00','11:30','13:00','13:30','14:00','14:30','15:00','15:30','16:00','16:30'];
+const MONTHS    = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 
-function getSlotsForDate(dateStr) {
-  const rng = seededRNG(stringToSeed(dateStr));
-  const pool = [...ALL_SLOTS];
-  // Fisher-Yates shuffle with seeded RNG
+function getSlotsForDate(isoDate) {
+  const rng  = seededRNG(strToSeed(isoDate));
+  const pool = [...ALL_TIMES];
   for (let i = pool.length - 1; i > 0; i--) {
     const j = Math.floor(rng() * (i + 1));
     [pool[i], pool[j]] = [pool[j], pool[i]];
   }
-  return pool.slice(0, 3).sort();
+  return pool.slice(0, 4).sort();
 }
 
-function getWorkdays(startDate, numWeeks) {
-  const days = [];
-  const current = new Date(startDate);
-  current.setDate(current.getDate() + 1); // Start from tomorrow
-
-  const endDate = new Date(startDate);
-  endDate.setDate(endDate.getDate() + numWeeks * 7);
-
-  while (current <= endDate) {
-    const dow = current.getDay();
-    if (dow >= 1 && dow <= 5) { // Mon–Fri
-      days.push(new Date(current));
-    }
-    current.setDate(current.getDate() + 1);
-  }
-  return days;
-}
-
-const DAY_NAMES = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-const MONTH_NAMES = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-                     'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-
-function formatDate(d) {
-  return `${DAY_NAMES[d.getDay()]}, ${d.getDate()} ${MONTH_NAMES[d.getMonth()]} ${d.getFullYear()}`;
-}
-
-function toDateStr(d) {
+function toISO(d) {
   return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
 }
 
-// Build slot picker UI
-let selectedDate = null;
+// Calendar state
+let calYear    = 0;
+let calMonth   = 0;
+let selectedDate = null;  // ISO string
 let selectedTime = null;
 
-function buildSlotPicker() {
-  const container = document.getElementById('slotPicker');
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-  const workdays = getWorkdays(today, 3);
+function initCalMonth() {
+  const now = new Date();
+  calYear  = now.getFullYear();
+  calMonth = now.getMonth();
+}
 
-  container.innerHTML = '';
+function renderCalendar() {
+  const label   = document.getElementById('calMonthLabel');
+  const grid    = document.getElementById('calDaysGrid');
+  const today   = new Date();
+  today.setHours(0,0,0,0);
 
-  workdays.forEach((day, idx) => {
-    const dateStr = toDateStr(day);
-    const slots = getSlotsForDate(dateStr);
-    const label = formatDate(day);
+  label.textContent = `${MONTHS[calMonth]} ${calYear}`;
+  grid.innerHTML    = '';
 
-    const wrapper = document.createElement('div');
-    wrapper.className = 'slot-date';
-    wrapper.innerHTML = `
-      <div class="slot-date__header" data-date="${dateStr}">
-        <strong>${label}</strong>
-        <span>${slots.length} slots available</span>
-        <svg class="slot-chevron" width="16" height="16" viewBox="0 0 24 24"
-             fill="none" stroke="currentColor" stroke-width="2">
-          <polyline points="6 9 12 15 18 9"/>
-        </svg>
-      </div>
-      <div class="slot-date__times">
-        ${slots.map(t => `
-          <button class="slot-time" data-date="${dateStr}" data-time="${t}" data-label="${label}">
-            ${t}
-          </button>
-        `).join('')}
-      </div>
-    `;
+  // First day of month (0=Sun)
+  const firstDow = new Date(calYear, calMonth, 1).getDay();
+  // Convert to Mon-based: Mon=0 … Sun=6
+  const startOffset = (firstDow + 6) % 7;
+  const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
 
-    container.appendChild(wrapper);
+  // Empty cells before first day
+  for (let i = 0; i < startOffset; i++) {
+    const empty = document.createElement('div');
+    empty.className = 'cal-day cal-day--empty';
+    grid.appendChild(empty);
+  }
 
-    // Toggle expand
-    wrapper.querySelector('.slot-date__header').addEventListener('click', () => {
-      wrapper.classList.toggle('expanded');
+  for (let d = 1; d <= daysInMonth; d++) {
+    const date    = new Date(calYear, calMonth, d);
+    const isoDate = toISO(date);
+    const dow     = date.getDay(); // 0=Sun, 6=Sat
+    const isWeekend  = dow === 0 || dow === 6;
+    const isPast     = date < today;
+    const isToday    = date.getTime() === today.getTime();
+    const isSelected = isoDate === selectedDate;
+
+    const cell = document.createElement('div');
+    cell.textContent = d;
+
+    let cls = 'cal-day';
+    if (isWeekend)      cls += ' cal-day--weekend';
+    else if (isPast)    cls += ' cal-day--disabled';
+    if (isToday)        cls += ' cal-day--today';
+    if (isSelected)     cls += ' cal-day--selected';
+    cell.className = cls;
+
+    if (!isWeekend && !isPast) {
+      cell.addEventListener('click', () => selectCalDate(isoDate, date));
+    }
+
+    grid.appendChild(cell);
+  }
+}
+
+function selectCalDate(isoDate, dateObj) {
+  selectedDate = isoDate;
+  selectedTime = null;
+  updateSelectedSlotDisplay();
+  renderCalendar();
+  renderTimeSlots(isoDate, dateObj);
+}
+
+function renderTimeSlots(isoDate, dateObj) {
+  const titleEl  = document.getElementById('calSlotsTitle');
+  const listEl   = document.getElementById('calSlotsList');
+  const slots    = getSlotsForDate(isoDate);
+  const dayNames = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  const monNames = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+  titleEl.textContent = `${dayNames[dateObj.getDay()]} ${dateObj.getDate()} ${monNames[dateObj.getMonth()]}`;
+  listEl.innerHTML    = '';
+
+  slots.forEach(time => {
+    const pill = document.createElement('button');
+    pill.className   = 'cal-time-pill' + (time === selectedTime ? ' selected' : '');
+    pill.textContent = time;
+    pill.addEventListener('click', () => {
+      selectedTime = time;
+      document.querySelectorAll('.cal-time-pill').forEach(p => p.classList.remove('selected'));
+      pill.classList.add('selected');
+      updateSelectedSlotDisplay();
     });
-
-    // Slot selection
-    wrapper.querySelectorAll('.slot-time').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        // Clear all selections
-        document.querySelectorAll('.slot-time').forEach(b => b.classList.remove('selected'));
-        btn.classList.add('selected');
-        selectedDate = btn.dataset.date;
-        selectedTime = btn.dataset.time;
-        const selLabel = btn.dataset.label;
-
-        // Auto-advance to step 2
-        setTimeout(() => goToBookStep2(selLabel, selectedTime), 300);
-      });
-    });
-
-    // Auto-expand first one
-    if (idx === 0) wrapper.classList.add('expanded');
+    listEl.appendChild(pill);
   });
 }
 
-function goToBookStep2(dateLabel, time) {
-  document.getElementById('bookStep1').style.display = 'none';
-  document.getElementById('bookStep2').style.display = 'block';
-  document.getElementById('selectedSlotDisplay').textContent =
-    `📅 ${dateLabel} at ${time}`;
+function updateSelectedSlotDisplay() {
+  const el = document.getElementById('calSelectedSlot');
+  if (selectedDate && selectedTime) {
+    const d = new Date(selectedDate + 'T00:00:00');
+    const dn = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    const mn = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    el.textContent = `📅 ${dn[d.getDay()]} ${d.getDate()} ${mn[d.getMonth()]} at ${selectedTime}`;
+    el.classList.add('active');
+  } else if (selectedDate) {
+    el.textContent = 'Choose a time on the right →';
+    el.classList.remove('active');
+  } else {
+    el.textContent = 'No date & time selected yet';
+    el.classList.remove('active');
+  }
 }
 
-function goToBookStep1() {
-  document.getElementById('bookStep1').style.display = 'block';
-  document.getElementById('bookStep2').style.display = 'none';
-}
+document.getElementById('calPrev').addEventListener('click', () => {
+  calMonth--;
+  if (calMonth < 0) { calMonth = 11; calYear--; }
+  renderCalendar();
+});
+
+document.getElementById('calNext').addEventListener('click', () => {
+  calMonth++;
+  if (calMonth > 11) { calMonth = 0; calYear++; }
+  renderCalendar();
+});
 
 /* ═══════════════════════════════════════════ MODALS */
 function openModal(id) {
   const overlay = document.getElementById(id);
   overlay.style.display = 'flex';
-  // Trigger reflow for transition
   requestAnimationFrame(() => overlay.classList.add('open', 'visible'));
   document.body.style.overflow = 'hidden';
 
   if (id === 'bookModal') {
-    // Reset to step 1
-    document.getElementById('bookStep1').style.display = 'block';
-    document.getElementById('bookStep2').style.display = 'none';
-    document.getElementById('bookStep3').style.display = 'none';
+    // Full reset
+    document.getElementById('bookFormWrap').style.display = '';
+    document.getElementById('bookSuccess').style.display  = 'none';
     document.getElementById('bookForm').reset();
     selectedDate = null;
     selectedTime = null;
-    buildSlotPicker();
+    updateSelectedSlotDisplay();
+    // Re-enable submit button
+    const btn = document.getElementById('bookSubmitBtn');
+    btn.disabled    = false;
+    btn.textContent = 'Confirm Booking';
+    // Init + render calendar
+    initCalMonth();
+    renderCalendar();
+    document.getElementById('calSlotsTitle').textContent = 'Select a date';
+    document.getElementById('calSlotsList').innerHTML =
+      '<p class="cal-slots__placeholder">Choose a date on the calendar to see available times.</p>';
   }
 
   if (id === 'brochureModal') {
     document.getElementById('brochureStep1').style.display = 'block';
     document.getElementById('brochureStep2').style.display = 'none';
     document.getElementById('brochureForm').reset();
+    // Re-enable submit button
+    const btn = document.getElementById('brochureSubmitBtn');
+    btn.disabled    = false;
+    btn.textContent = 'Download PDF';
   }
 }
 
@@ -259,7 +275,6 @@ function handleOverlayClick(e, id) {
   if (e.target === document.getElementById(id)) closeModal(id);
 }
 
-// Escape key
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
     ['bookModal', 'brochureModal'].forEach(id => {
@@ -269,72 +284,73 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-/* ═══════════════════════════════════════════ FORM SUBMISSIONS */
+/* ═══════════════════════════════════════════ BOOKING FORM SUBMIT */
 document.getElementById('bookForm').addEventListener('submit', async (e) => {
   e.preventDefault();
+
   if (!selectedDate || !selectedTime) {
-    alert('Please select a meeting date and time first.');
-    goToBookStep1();
+    alert('Please select a date and time from the calendar.');
     return;
   }
 
   const formData = new FormData(e.target);
-  const payload = {
-    name: formData.get('name'),
-    email: formData.get('email'),
+  const payload  = {
+    name:    formData.get('name'),
+    email:   formData.get('email'),
     company: formData.get('company') || '',
-    phone: formData.get('phone') || '',
+    phone:   '',
     message: formData.get('message') || '',
-    date: selectedDate,
-    time: selectedTime
+    date:    selectedDate,
+    time:    selectedTime
   };
 
-  const btn = e.target.querySelector('[type="submit"]');
-  btn.disabled = true;
+  const btn = document.getElementById('bookSubmitBtn');
+  btn.disabled    = true;
   btn.textContent = 'Sending…';
 
   try {
     const res = await fetch('/api/book', {
-      method: 'POST',
+      method:  'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
+      body:    JSON.stringify(payload)
     });
     if (!res.ok) throw new Error('Server error');
-    // Show success
-    document.getElementById('bookStep2').style.display = 'none';
-    document.getElementById('bookStep3').style.display = 'flex';
+
+    document.getElementById('bookFormWrap').style.display = 'none';
+    document.getElementById('bookSuccess').style.display  = 'flex';
   } catch (err) {
     console.error(err);
     alert('Something went wrong. Please email us directly at info@ptcgr.com');
-    btn.disabled = false;
+    btn.disabled    = false;
     btn.textContent = 'Confirm Booking';
   }
 });
 
+/* ═══════════════════════════════════════════ BROCHURE FORM SUBMIT */
 document.getElementById('brochureForm').addEventListener('submit', async (e) => {
   e.preventDefault();
 
   const formData = new FormData(e.target);
-  const payload = {
-    name: formData.get('name'),
-    email: formData.get('email'),
+  const payload  = {
+    name:    formData.get('name'),
+    email:   formData.get('email'),
     company: formData.get('company') || '',
-    phone: formData.get('phone') || ''
+    phone:   formData.get('phone')   || ''
   };
 
-  const btn = e.target.querySelector('[type="submit"]');
-  btn.disabled = true;
+  const btn = document.getElementById('brochureSubmitBtn');
+  btn.disabled    = true;
   btn.textContent = 'Processing…';
 
   try {
     const res = await fetch('/api/download-brochure', {
-      method: 'POST',
+      method:  'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
+      body:    JSON.stringify(payload)
     });
     if (!res.ok) throw new Error('Server error');
 
-    // Trigger download
+    // Trigger PDF download
     const a = document.createElement('a');
     a.href = '/assets/brochure.pdf';
     a.download = 'PTC-Cladding-Company-Profile.pdf';
@@ -342,14 +358,46 @@ document.getElementById('brochureForm').addEventListener('submit', async (e) => 
     a.click();
     document.body.removeChild(a);
 
-    // Show success step
     document.getElementById('brochureStep1').style.display = 'none';
     document.getElementById('brochureStep2').style.display = 'flex';
   } catch (err) {
     console.error(err);
     alert('Something went wrong. Please email us at info@ptcgr.com');
-    btn.disabled = false;
+    btn.disabled    = false;
     btn.textContent = 'Download PDF';
+  }
+});
+
+/* ═══════════════════════════════════════════ CONTACT FORM SUBMIT */
+document.getElementById('contactForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  const formData = new FormData(e.target);
+  const payload  = {
+    name:    formData.get('name'),
+    email:   formData.get('email'),
+    message: formData.get('message') || ''
+  };
+
+  const btn = document.getElementById('contactSubmitBtn');
+  btn.disabled    = true;
+  btn.textContent = 'Sending…';
+
+  try {
+    const res = await fetch('/api/contact', {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify(payload)
+    });
+    if (!res.ok) throw new Error('Server error');
+
+    document.getElementById('contactFormWrap').style.display = 'none';
+    document.getElementById('contactSuccess').style.display  = 'flex';
+  } catch (err) {
+    console.error(err);
+    alert('Something went wrong. Please email us at info@ptcgr.com');
+    btn.disabled    = false;
+    btn.textContent = 'Send Message';
   }
 });
 
@@ -359,9 +407,8 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     const target = document.querySelector(anchor.getAttribute('href'));
     if (target) {
       e.preventDefault();
-      const offset = 76; // nav height
       window.scrollTo({
-        top: target.getBoundingClientRect().top + window.scrollY - offset,
+        top:      target.getBoundingClientRect().top + window.scrollY - 76,
         behavior: 'smooth'
       });
     }
