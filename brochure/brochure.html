@@ -1,0 +1,1275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>PTC Cladding — Company Brochure</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+/* ── PAGE SETUP ─────────────────────────────────────────────── */
+@page {
+  size: A4 portrait;
+  margin: 0;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --orange:    #FF6200;
+  --orange-dk: #E05500;
+  --black:     #0A0A0A;
+  --dark:      #111111;
+  --white:     #FFFFFF;
+  --card-bg:   #F3F4F6;
+  --text-main: #111111;
+  --text-sub:  #555555;
+  --text-muted:#888888;
+  --img: 'file:///root/ptc-cladding-website/static/assets/images/';
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+  background: #fff;
+  color: var(--text-main);
+  line-height: 1.5;
+  font-size: 10pt;
+}
+
+/* ── HELPERS ─────────────────────────────────────────────────── */
+.page {
+  width: 210mm;
+  min-height: 297mm;
+  position: relative;
+  overflow: hidden;
+  page-break-after: always;
+  break-after: page;
+}
+.page:last-child { page-break-after: avoid; break-after: avoid; }
+
+.eyebrow {
+  display: block;
+  font-size: 7.5pt;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 8px;
+}
+
+.section-title {
+  font-size: 22pt;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: var(--text-main);
+}
+.section-title em { font-style: normal; color: var(--orange); }
+
+.section-title-white {
+  font-size: 22pt;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: #fff;
+}
+
+/* ── PAGE 1: COVER ───────────────────────────────────────────── */
+.cover {
+  background: var(--dark);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  height: 297mm;
+}
+
+.cover__bg {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 0;
+}
+.cover__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: 0.45;
+}
+
+.cover__overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(
+    160deg,
+    rgba(10,10,10,0.62) 0%,
+    rgba(10,10,10,0.18) 50%,
+    rgba(255,98,0,0.08) 100%
+  );
+  z-index: 1;
+}
+
+.cover__body {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 14mm 16mm;
+}
+
+.cover__logo {
+  width: 56px;
+  height: 56px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+}
+.cover__logo img { width: 100%; height: 100%; object-fit: contain; }
+
+.cover__main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-bottom: 10mm;
+}
+
+.cover__eyebrow {
+  font-size: 8pt;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 12px;
+}
+
+.cover__headline {
+  font-size: 42pt;
+  font-weight: 900;
+  line-height: 1.0;
+  letter-spacing: -0.03em;
+  color: #fff;
+  margin-bottom: 18px;
+}
+.cover__headline em { font-style: normal; color: var(--orange); }
+
+.cover__sub {
+  font-size: 11pt;
+  font-weight: 400;
+  color: rgba(255,255,255,0.75);
+  max-width: 120mm;
+  line-height: 1.6;
+  margin-bottom: 28px;
+}
+
+.cover__stats {
+  display: flex;
+  gap: 0;
+  border-top: 1px solid rgba(255,255,255,0.15);
+  padding-top: 16px;
+}
+
+.cover__stat {
+  flex: 1;
+  padding-right: 16px;
+  border-right: 1px solid rgba(255,255,255,0.15);
+  margin-right: 16px;
+}
+.cover__stat:last-child { border-right: none; }
+
+.cover__stat-val {
+  display: block;
+  font-size: 20pt;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+.cover__stat-val span { color: var(--orange); }
+
+.cover__stat-lbl {
+  display: block;
+  font-size: 7.5pt;
+  color: rgba(255,255,255,0.55);
+  font-weight: 500;
+  margin-top: 4px;
+  letter-spacing: 0.02em;
+}
+
+/* ── PAGE 2: ABOUT ───────────────────────────────────────────── */
+.about-page {
+  background: #fff;
+  height: 297mm;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-header {
+  background: var(--dark);
+  padding: 10mm 16mm 8mm;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.page-header__logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 7px;
+  overflow: hidden;
+  background: #fff;
+}
+.page-header__logo img { width: 100%; height: 100%; object-fit: contain; }
+
+.page-header__wordmark {
+  font-size: 9pt;
+  font-weight: 700;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 0.06em;
+}
+
+.about-split {
+  display: flex;
+  flex: 1;
+}
+
+.about-photo {
+  width: 88mm;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.about-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.about-content {
+  flex: 1;
+  padding: 12mm 14mm 12mm 12mm;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.about-content .section-title { margin-bottom: 14px; }
+
+.about-content p {
+  font-size: 9.5pt;
+  color: var(--text-sub);
+  line-height: 1.65;
+  margin-bottom: 10px;
+}
+
+.about-highlights {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.about-highlight {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 9pt;
+  font-weight: 500;
+  color: var(--text-main);
+}
+
+.check-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--orange);
+  flex-shrink: 0;
+}
+
+/* ── PAGE 3: SERVICES ───────────────────────────────────────── */
+.services-page {
+  background: var(--card-bg);
+  height: 297mm;
+  display: flex;
+  flex-direction: column;
+}
+
+.services-header {
+  background: var(--dark);
+  padding: 10mm 16mm 9mm;
+}
+
+.services-header .eyebrow { margin-bottom: 6px; }
+.services-header .section-title-white { font-size: 20pt; margin-bottom: 0; }
+
+.services-body {
+  flex: 1;
+  padding: 10mm 16mm 10mm;
+  display: flex;
+  flex-direction: column;
+  gap: 6mm;
+}
+
+.service-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 9mm 10mm;
+  flex: 1;
+  display: flex;
+  gap: 10mm;
+  align-items: flex-start;
+}
+
+.service-icon {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  background: #FFF3EC;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.service-icon svg {
+  width: 24px;
+  height: 24px;
+  stroke: var(--orange);
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.service-text { flex: 1; }
+
+.service-card h3 {
+  font-size: 12pt;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 5px;
+}
+
+.service-card p {
+  font-size: 9pt;
+  color: var(--text-sub);
+  line-height: 1.6;
+  margin-bottom: 8px;
+}
+
+.service-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.service-tag {
+  font-size: 7.5pt;
+  font-weight: 600;
+  padding: 2px 8px;
+  background: var(--card-bg);
+  border-radius: 50px;
+  color: var(--text-sub);
+  letter-spacing: 0.01em;
+}
+
+/* ── PAGES 4-6: PROJECTS ────────────────────────────────────── */
+.projects-page {
+  background: #fff;
+  height: 297mm;
+  display: flex;
+  flex-direction: column;
+}
+
+.projects-header {
+  background: var(--dark);
+  padding: 10mm 16mm 9mm;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+.projects-header .section-title-white { font-size: 18pt; }
+.projects-header__page {
+  font-size: 7.5pt;
+  color: rgba(255,255,255,0.4);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+}
+
+.projects-body {
+  flex: 1;
+  padding: 8mm 16mm 8mm;
+  display: flex;
+  flex-direction: column;
+  gap: 5mm;
+}
+
+.project-card {
+  flex: 1;
+  display: flex;
+  gap: 4mm;
+  background: var(--card-bg);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.project-photos {
+  display: flex;
+  flex-direction: column;
+  width: 55mm;
+  flex-shrink: 0;
+  gap: 2px;
+}
+
+.project-photo {
+  flex: 1;
+  overflow: hidden;
+}
+.project-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.project-info {
+  flex: 1;
+  padding: 7mm 8mm 7mm 4mm;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.project-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 5px;
+}
+
+.project-tag {
+  font-size: 6.5pt;
+  font-weight: 700;
+  padding: 1.5px 6px;
+  border-radius: 50px;
+  letter-spacing: 0.04em;
+}
+.project-tag--live {
+  background: rgba(255,98,0,0.12);
+  color: var(--orange);
+}
+.project-tag--done {
+  background: rgba(34,197,94,0.12);
+  color: #16a34a;
+}
+
+.project-location {
+  font-size: 7.5pt;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.project-info h3 {
+  font-size: 12pt;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 5px;
+  letter-spacing: -0.01em;
+}
+
+.project-info p {
+  font-size: 8.5pt;
+  color: var(--text-sub);
+  line-height: 1.6;
+  margin-bottom: 8px;
+}
+
+.project-stats {
+  display: flex;
+  gap: 12mm;
+}
+.project-stat-val {
+  display: block;
+  font-size: 11pt;
+  font-weight: 700;
+  color: var(--text-main);
+  letter-spacing: -0.01em;
+}
+.project-stat-lbl {
+  display: block;
+  font-size: 7pt;
+  color: var(--text-muted);
+  font-weight: 500;
+  margin-top: 1px;
+}
+
+/* ── PAGE 7: CONTACT / BACK COVER ───────────────────────────── */
+.contact-page {
+  background: var(--dark);
+  color: #fff;
+  height: 297mm;
+  display: flex;
+  flex-direction: column;
+  padding: 16mm;
+}
+
+.contact-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16mm;
+}
+
+.contact-logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+}
+.contact-logo img { width: 100%; height: 100%; object-fit: contain; }
+
+.contact-wordmark {
+  font-size: 10pt;
+  font-weight: 700;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 0.06em;
+}
+
+.contact-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.contact-page .eyebrow { color: var(--orange); margin-bottom: 10px; }
+.contact-headline {
+  font-size: 30pt;
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: #fff;
+  margin-bottom: 10mm;
+}
+.contact-headline em { font-style: normal; color: var(--orange); }
+
+.contact-grid {
+  display: flex;
+  gap: 8mm;
+  margin-bottom: 10mm;
+}
+
+.contact-person {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 14px;
+  padding: 8mm;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6mm;
+  flex: 1;
+}
+
+.contact-portrait {
+  width: 64px;
+  height: 85px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 2px solid rgba(255,98,0,0.4);
+}
+.contact-portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+.contact-name {
+  font-size: 11pt;
+  font-weight: 700;
+  color: #fff;
+  display: block;
+  margin-bottom: 2px;
+}
+.contact-role {
+  font-size: 8.5pt;
+  color: rgba(255,255,255,0.5);
+  display: block;
+}
+
+.contact-details {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 14px;
+  padding: 8mm;
+  flex: 1.2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6mm;
+}
+
+.contact-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.contact-row-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: rgba(255,98,0,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.contact-row-icon svg {
+  width: 14px;
+  height: 14px;
+  stroke: var(--orange);
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.contact-row-label {
+  font-size: 7pt;
+  color: rgba(255,255,255,0.4);
+  display: block;
+  margin-bottom: 1px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.contact-row-val {
+  font-size: 9.5pt;
+  font-weight: 600;
+  color: #fff;
+  display: block;
+}
+
+.contact-footer {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 7mm;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.contact-footer-copy {
+  font-size: 7.5pt;
+  color: rgba(255,255,255,0.3);
+}
+
+.contact-footer-url {
+  font-size: 8pt;
+  font-weight: 600;
+  color: var(--orange);
+  letter-spacing: 0.02em;
+}
+
+/* ── DIVIDER LINE ────────────────────────────────────────────── */
+.orange-bar {
+  height: 3px;
+  background: var(--orange);
+  width: 40px;
+  border-radius: 2px;
+  margin: 8px 0 14px;
+}
+
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════════════
+     PAGE 1 — COVER
+══════════════════════════════════════════════════════════════ -->
+<div class="page cover">
+  <div class="cover__bg">
+    <img src="file:///root/ptc-cladding-website/static/assets/images/hero.jpg" alt="" />
+  </div>
+  <div class="cover__overlay"></div>
+  <div class="cover__body">
+
+    <div class="cover__logo">
+      <img src="file:///root/ptc-cladding-website/static/assets/images/img-000.jpg" alt="PTC Cladding" />
+    </div>
+
+    <div class="cover__main">
+      <div class="cover__eyebrow">Company Profile — 2025</div>
+      <h1 class="cover__headline">
+        Precision<br/>Facades.<br/><em>European Scale.</em>
+      </h1>
+      <p class="cover__sub">
+        Trusted by leading developers across the UK, Scandinavia and the Baltics. We deliver high-volume, technically complex cladding with zero compromise on quality.
+      </p>
+      <div class="cover__stats">
+        <div class="cover__stat">
+          <span class="cover__stat-val">11<span>+</span></span>
+          <span class="cover__stat-lbl">Years in Business</span>
+        </div>
+        <div class="cover__stat">
+          <span class="cover__stat-val">100k<span>+</span></span>
+          <span class="cover__stat-lbl">m² Facade Delivered</span>
+        </div>
+        <div class="cover__stat">
+          <span class="cover__stat-val">4</span>
+          <span class="cover__stat-lbl">Countries</span>
+        </div>
+        <div class="cover__stat">
+          <span class="cover__stat-val">9<span>+</span></span>
+          <span class="cover__stat-lbl">Landmark Projects</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     PAGE 2 — WHO WE ARE
+══════════════════════════════════════════════════════════════ -->
+<div class="page about-page">
+
+  <div class="page-header">
+    <div class="page-header__logo">
+      <img src="file:///root/ptc-cladding-website/static/assets/images/img-000.jpg" alt="PTC" />
+    </div>
+    <span class="page-header__wordmark">PTC CLADDING</span>
+  </div>
+
+  <div class="about-split">
+    <div class="about-photo">
+      <img src="file:///root/ptc-cladding-website/static/assets/images/about-installation.jpg" alt="Installation" />
+    </div>
+    <div class="about-content">
+      <span class="eyebrow">Who We Are</span>
+      <div class="orange-bar"></div>
+      <h2 class="section-title">Built on Precision.<br/>Proven at Scale.</h2>
+      <p style="margin-top:14px">
+        Established in 2015, PTC Cladding has become a trusted partner in the European cladding industry, specialising in the installation of high-volume and technically complex facades and prefabricated structures.
+      </p>
+      <p>
+        We work closely with our clients to deliver projects that demand precision, expertise and an uncompromising commitment to quality — from the initial specification through to the final panel.
+      </p>
+      <p>
+        From a 10,000 m² medical research facility in London to landmark residential towers across the UK and Scandinavia, our track record speaks for itself.
+      </p>
+
+      <div class="about-highlights">
+        <div class="about-highlight">
+          <div class="check-dot"></div>
+          <span>UK, Latvian &amp; Swedish project portfolio</span>
+        </div>
+        <div class="about-highlight">
+          <div class="check-dot"></div>
+          <span>GRC, aluminium, timber &amp; glazed systems</span>
+        </div>
+        <div class="about-highlight">
+          <div class="check-dot"></div>
+          <span>Technically complex, large-scale delivery</span>
+        </div>
+        <div class="about-highlight">
+          <div class="check-dot"></div>
+          <span>Trusted partners: Staticus, Simeon (Italy)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     PAGE 3 — WHAT WE DO (SERVICES)
+══════════════════════════════════════════════════════════════ -->
+<div class="page services-page">
+
+  <div class="services-header page-header">
+    <div>
+      <span class="eyebrow">What We Do</span>
+      <h2 class="section-title-white">Three Core Disciplines.<br/>One Delivery Team.</h2>
+    </div>
+    <div class="page-header__logo">
+      <img src="file:///root/ptc-cladding-website/static/assets/images/img-000.jpg" alt="PTC" />
+    </div>
+  </div>
+
+  <div class="services-body">
+
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 48 48" fill="none" stroke="#FF6200" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="6" y="8" width="36" height="34" rx="1"/>
+          <line x1="6" y1="19" x2="42" y2="19"/>
+          <line x1="6" y1="30" x2="42" y2="30"/>
+          <line x1="18" y1="8" x2="18" y2="42"/>
+          <line x1="30" y1="8" x2="30" y2="42"/>
+          <line x1="6" y1="8" x2="6" y2="4"/>
+          <line x1="42" y1="8" x2="42" y2="4"/>
+          <line x1="6" y1="4" x2="42" y2="4"/>
+        </svg>
+      </div>
+      <div class="service-text">
+        <h3>Cladding Features</h3>
+        <p>Installation of rainscreen claddings in a wide range of materials — GRC, aluminium &amp; timber. Our services also cover balustrades, decking and other architectural features, from straightforward repeating panels to bespoke signature elements.</p>
+        <div class="service-tags">
+          <span class="service-tag">GRC &amp; Aluminium Rainscreens</span>
+          <span class="service-tag">Timber Cladding</span>
+          <span class="service-tag">Balustrades &amp; Decking</span>
+          <span class="service-tag">Architectural Features</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 48 48" fill="none" stroke="#FF6200" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="4" y="16" width="18" height="16" rx="1"/>
+          <rect x="26" y="16" width="18" height="16" rx="1"/>
+          <line x1="22" y1="24" x2="26" y2="24"/>
+          <path d="M10 8 L10 16"/><path d="M7 11 L10 8 L13 11"/>
+          <path d="M38 40 L38 32"/><path d="M35 37 L38 40 L41 37"/>
+        </svg>
+      </div>
+      <div class="service-text">
+        <h3>Prefabricated Structures</h3>
+        <p>Large-scale facade delivery using prefabricated unitised aluminium-framed panels. Assembly of offsite-manufactured timber and precast structural or facade panels — maximising programme efficiency and on-site quality control.</p>
+        <div class="service-tags">
+          <span class="service-tag">Unitised Aluminium Panels</span>
+          <span class="service-tag">Offsite Timber Assembly</span>
+          <span class="service-tag">Precast Structural Panels</span>
+          <span class="service-tag">Large-Volume Delivery</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 48 48" fill="none" stroke="#FF6200" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="6" y="6" width="36" height="36" rx="1"/>
+          <line x1="6" y1="24" x2="42" y2="24"/>
+          <line x1="24" y1="6" x2="24" y2="42"/>
+          <line x1="6" y1="15" x2="24" y2="15"/>
+          <line x1="24" y1="33" x2="42" y2="33"/>
+          <circle cx="15" cy="24" r="2" fill="#FF6200" stroke="none"/>
+        </svg>
+      </div>
+      <div class="service-text">
+        <h3>Glazed Elements</h3>
+        <p>Installation of standardised and bespoke glazed structures. We work with aluminium and timber frame systems across a wide range of glazing applications — from curtain wall systems and skylights to bespoke window and door packages.</p>
+        <div class="service-tags">
+          <span class="service-tag">Windows &amp; Doors</span>
+          <span class="service-tag">Curtain Wall Systems</span>
+          <span class="service-tag">Skylights &amp; Rooflights</span>
+          <span class="service-tag">Aluminium &amp; Timber Frames</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     PAGE 4 — PROJECTS (1 of 3)
+══════════════════════════════════════════════════════════════ -->
+<div class="page projects-page">
+  <div class="projects-header">
+    <div>
+      <span class="eyebrow">Key Projects</span>
+      <h2 class="section-title-white">Delivered Across<br/>Europe's Skylines.</h2>
+    </div>
+    <span class="projects-header__page">01 / 03</span>
+  </div>
+  <div class="projects-body">
+
+    <!-- Riga Central Station -->
+    <div class="project-card">
+      <div class="project-photos">
+        <div class="project-photo">
+          <img src="file:///root/ptc-cladding-website/static/assets/images/proj-riga-station-1.jpg" alt="Riga Central Station" />
+        </div>
+        <div class="project-photo">
+          <img src="file:///root/ptc-cladding-website/static/assets/images/proj-riga-station-2.jpg" alt="Riga Central Station" />
+        </div>
+      </div>
+      <div class="project-info">
+        <div class="project-meta">
+          <span class="project-tag project-tag--live">In Progress</span>
+          <span class="project-location">● Riga, Latvia</span>
+        </div>
+        <h3>Riga Central Station</h3>
+        <p>Highly complex steel glazed facades, including curved roof elements and curved arch cladding for the Rail Baltica Riga Central Station development. Delivered in partnership with Simeon (Italy).</p>
+        <div class="project-stats">
+          <div>
+            <span class="project-stat-val">4,000 m²</span>
+            <span class="project-stat-lbl">Scope</span>
+          </div>
+          <div>
+            <span class="project-stat-val">2025 –</span>
+            <span class="project-stat-lbl">Period</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Preses Nams -->
+    <div class="project-card">
+      <div class="project-photos">
+        <div class="project-photo">
+          <img src="file:///root/ptc-cladding-website/static/assets/images/proj-minories-1.jpg" alt="Preses Nams" />
+        </div>
+        <div class="project-photo">
+          <img src="file:///root/ptc-cladding-website/static/assets/images/proj-preses-nams-2.jpg" alt="Preses Nams" />
+        </div>
+      </div>
+      <div class="project-info">
+        <div class="project-meta">
+          <span class="project-tag project-tag--live">In Progress</span>
+          <span class="project-location">● Riga, Latvia</span>
+        </div>
+        <h3>Preses Nams</h3>
+        <p>10,600 m² of aluminium unitised facade installation in partnership with Staticus. Complex curtain wall and cladding scope on a landmark Riga media campus.</p>
+        <div class="project-stats">
+          <div>
+            <span class="project-stat-val">10,600 m²</span>
+            <span class="project-stat-lbl">Scope</span>
+          </div>
+          <div>
+            <span class="project-stat-val">2024 –</span>
+            <span class="project-stat-lbl">Period</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Minories -->
+    <div class="project-card">
+      <div class="project-photos">
+        <div class="project-photo">
+          <img src="file:///root/ptc-cladding-website/static/assets/images/proj-wembley-1.jpg" alt="Minories" />
+        </div>
+        <div class="project-photo">
+          <img src="file:///root/ptc-cladding-website/static/assets/images/proj-minories-2.jpg" alt="Minories" />
+        </div>
+      </div>
+      <div class="project-info">
+        <div class="project-meta">
+          <span class="project-tag project-tag--done">Completed</span>
+          <span class="project-location">● London, UK</span>
+        </div>
+        <h3>Minories</h3>
+        <p>6,000 m² full facade envelope — corrugated rainscreens, fascias, soffits and balustrading. A technically demanding package across a complex city-centre site.</p>
+        <div class="project-stats">
+          <div>
+            <span class="project-stat-val">6,000 m²</span>
+            <span class="project-stat-lbl">Scope</span>
+          </div>
+          <div>
+            <span class="project-stat-val">2023 – 2024</span>
+            <span class="project-stat-lbl">Period</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     PAGE 5 — PROJECTS (2 of 3)
+══════════════════════════════════════════════════════════════ -->
+<div class="page projects-page">
+  <div class="projects-header">
+    <div>
+      <span class="eyebrow">Key Projects</span>
+      <h2 class="section-title-white">Delivered Across<br/>Europe's Skylines.</h2>
+    </div>
+    <span class="projects-header__page">02 / 03</span>
+  </div>
+  <div class="projects-body">
+
+    <!-- Wembley -->
+    <div class="project-card">
+      <div class="project-photos">
+        <div class="project-photo">
+          <img src="file:///root/ptc-cladding-website/static/assets/images/proj-lims-1.jpg" alt="Wembley" />
+        </div>
+        <div class="project-photo">
+          <img src="file:///root/ptc-cladding-website/static/assets/images/proj-wembley-2.jpg" alt="Wembley" />
+        </div>
+      </div>
+      <div class="project-info">
+        <div class="project-meta">
+          <span class="project-tag project-tag--done">Completed</span>
+          <span class="project-location">● London, UK</span>
+        </div>
+        <h3>Wembley</h3>
+        <p>7,500 m² aluminium cladding with architectural fins and 1,500 m² aluminium curtain walls on a major residential development in the Wembley regeneration zone.</p>
+        <div class="project-stats">
+          <div>
+            <span class="project-stat-val">9,000 m²</span>
+            <span class="project-stat-lbl">Scope</span>
+          </div>
+          <div>
+            <span class="project-stat-val">2023 – 2024</span>
+            <span class="project-stat-lbl">Period</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LIMS -->
+    <div class="project-card">
+      <div class="project-photos">
+        <div class="project-photo">
+          <img src="file:///root/ptc-cladding-website/static/assets/images/proj-white-city-1.jpg" alt="LIMS" />
+        </div>
+        <div class="project-photo">
+          <img src="file:///root/ptc-cladding-website/static/assets/images/proj-lims-2.jpg" alt="LIMS" />
+        </div>
+      </div>
+      <div class="project-info">
+        <div class="project-meta">
+          <span class="project-tag project-tag--done">Completed</span>
+          <span class="project-location">● London, UK</span>
+        </div>
+        <h3>LIMS</h3>
+        <p>10,000 m² full facade — anodized and perforated aluminium, curtain walls, skylights and fins. Home of the London Institute of Medical Sciences, Imperial College London.</p>
+        <div class="project-stats">
+          <div>
+            <span class="project-stat-val">10,000 m²</span>
+            <span class="project-stat-lbl">Scope</span>
+          </div>
+          <div>
+            <span class="project-stat-val">2022 – 2023</span>
+            <span class="project-stat-lbl">Period</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- White City -->
+    <div class="project-card">
+      <div class="project-photos">
+        <div class="project-photo">
+          <img src="file:///root/ptc-cladding-website/static/assets/images/proj-ess-1.jpg" alt="White City" />
+        </div>
+        <div class="project-photo">
+          <img src="file:///root/ptc-cladding-website/static/assets/images/proj-white-city-2.jpg" alt="White City" />
+        </div>
+      </div>
+      <div class="project-info">
+        <div class="project-meta">
+          <span class="project-tag project-tag--done">Completed</span>
+          <span class="project-location">● London, UK</span>
+        </div>
+        <h3>White City</h3>
+        <p>9,200 m² of GRC panels and architectural cladding elements on a 27-storey building, including full insulation and firestopping solutions.</p>
+        <div class="project-stats">
+          <div>
+            <span class="project-stat-val">9,200 m²</span>
+            <span class="project-stat-lbl">Scope</span>
+          </div>
+          <div>
+            <span class="project-stat-val">2022</span>
+            <span class="project-stat-lbl">Period</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     PAGE 6 — PROJECTS (3 of 3)
+══════════════════════════════════════════════════════════════ -->
+<div class="page projects-page">
+  <div class="projects-header">
+    <div>
+      <span class="eyebrow">Key Projects</span>
+      <h2 class="section-title-white">Delivered Across<br/>Europe's Skylines.</h2>
+    </div>
+    <span class="projects-header__page">03 / 03</span>
+  </div>
+  <div class="projects-body">
+
+    <!-- ESS Campus -->
+    <div class="project-card">
+      <div class="project-photos">
+        <div class="project-photo">
+          <img src="file:///root/ptc-cladding-website/static/assets/images/proj-ess-left.jpg" alt="ESS Campus" />
+        </div>
+        <div class="project-photo">
+          <img src="file:///root/ptc-cladding-website/static/assets/images/proj-ess-2.jpg" alt="ESS Campus" />
+        </div>
+      </div>
+      <div class="project-info">
+        <div class="project-meta">
+          <span class="project-tag project-tag--done">Completed</span>
+          <span class="project-location">● Lund, Sweden</span>
+        </div>
+        <h3>ESS Campus</h3>
+        <p>8,300 m² aluminium rainscreen and curtain walls at the European Spallation Source — one of Europe's most complex and prestigious scientific research facilities.</p>
+        <div class="project-stats">
+          <div>
+            <span class="project-stat-val">8,300 m²</span>
+            <span class="project-stat-lbl">Scope</span>
+          </div>
+          <div>
+            <span class="project-stat-val">2020 – 2021</span>
+            <span class="project-stat-lbl">Period</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tyresso -->
+    <div class="project-card">
+      <div class="project-photos">
+        <div class="project-photo">
+          <img src="file:///root/ptc-cladding-website/static/assets/images/proj-tyresso-1.jpg" alt="Tyresso" />
+        </div>
+        <div class="project-photo">
+          <img src="file:///root/ptc-cladding-website/static/assets/images/proj-tyresso-right.jpg" alt="Tyresso" />
+        </div>
+      </div>
+      <div class="project-info">
+        <div class="project-meta">
+          <span class="project-tag project-tag--done">Completed</span>
+          <span class="project-location">● Stockholm, Sweden</span>
+        </div>
+        <h3>Tyresso</h3>
+        <p>3,000 m² mixed Corten steel, timber and Kingspan facade cladding including architectural pergolas on a high-specification residential development in Stockholm.</p>
+        <div class="project-stats">
+          <div>
+            <span class="project-stat-val">3,000 m²</span>
+            <span class="project-stat-lbl">Scope</span>
+          </div>
+          <div>
+            <span class="project-stat-val">2019 – 2020</span>
+            <span class="project-stat-lbl">Period</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- College Road -->
+    <div class="project-card">
+      <div class="project-photos">
+        <div class="project-photo">
+          <img src="file:///root/ptc-cladding-website/static/assets/images/proj-college-rd-2.jpg" alt="College Road" />
+        </div>
+        <div class="project-photo">
+          <img src="file:///root/ptc-cladding-website/static/assets/images/proj-college-rd-1.jpg" alt="College Road" />
+        </div>
+      </div>
+      <div class="project-info">
+        <div class="project-meta">
+          <span class="project-tag project-tag--done">Completed</span>
+          <span class="project-location">● London, UK</span>
+        </div>
+        <h3>College Road</h3>
+        <p>8,000 m² GRC panels on a 20-storey building, including full insulation and firestopping solutions. One of our earliest and most technically complex deliveries.</p>
+        <div class="project-stats">
+          <div>
+            <span class="project-stat-val">8,000 m²</span>
+            <span class="project-stat-lbl">Scope</span>
+          </div>
+          <div>
+            <span class="project-stat-val">2017 – 2018</span>
+            <span class="project-stat-lbl">Period</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     PAGE 7 — CONTACT / BACK COVER
+══════════════════════════════════════════════════════════════ -->
+<div class="page contact-page">
+
+  <div class="contact-top">
+    <div class="contact-logo">
+      <img src="file:///root/ptc-cladding-website/static/assets/images/img-000.jpg" alt="PTC" />
+    </div>
+    <span class="contact-wordmark">PTC CLADDING</span>
+  </div>
+
+  <div class="contact-main">
+    <span class="eyebrow">Get in Touch</span>
+    <h2 class="contact-headline">
+      Let's Talk<br/>About Your <em>Project.</em>
+    </h2>
+
+    <div class="contact-grid">
+
+      <div class="contact-person">
+        <div class="contact-portrait">
+          <img src="file:///root/ptc-cladding-website/static/assets/images/proj-lauris.jpg" alt="Lauris Lakotko" />
+        </div>
+        <div>
+          <span class="contact-name">Lauris Lakotko</span>
+          <span class="contact-role">CEO &amp; Founder</span>
+        </div>
+      </div>
+
+      <div class="contact-details">
+        <div class="contact-row">
+          <div class="contact-row-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#FF6200" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+          </div>
+          <div>
+            <span class="contact-row-label">Email</span>
+            <span class="contact-row-val">info@ptcgr.com</span>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-row-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#FF6200" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13 19.79 19.79 0 0 1 1.61 4.4 2 2 0 0 1 3.58 2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.16 6.16l.91-.82a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 17.5z"/>
+            </svg>
+          </div>
+          <div>
+            <span class="contact-row-label">Phone</span>
+            <span class="contact-row-val">+371 26 953 583</span>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-row-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#FF6200" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+          </div>
+          <div>
+            <span class="contact-row-label">Registered Office</span>
+            <span class="contact-row-val">71-75 Shelton Street, London, WC2H 9JQ</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="contact-footer">
+    <span class="contact-footer-copy">© 2025 PTC Cladding. All rights reserved.</span>
+    <span class="contact-footer-url">ptcgr.com</span>
+  </div>
+
+</div>
+
+</body>
+</html>
