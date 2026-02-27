@@ -414,3 +414,72 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     }
   });
 });
+
+/* ═══════════════════════════════════════════ PROJECT PHOTO SLIDERS */
+(function () {
+  document.querySelectorAll('.project-photo-slider').forEach(slider => {
+    const photos = Array.from(slider.querySelectorAll('.project-row__photo'));
+    const dots   = Array.from(slider.querySelectorAll('.slider-dot'));
+    if (photos.length < 2) return;
+
+    let current  = 0;
+    let startX   = 0;
+    let startTx  = 0;
+    let dragging = false;
+
+    /* Only run carousel logic when mobile CSS is active */
+    function isCarousel() {
+      return getComputedStyle(slider).display === 'flex';
+    }
+
+    /* Move both photos by the same pixel offset — they slide in lockstep */
+    function applyTx(tx, animated) {
+      const tr = animated ? 'transform 0.3s cubic-bezier(0.4,0,0.2,1)' : 'none';
+      photos.forEach(p => {
+        p.style.transition = tr;
+        p.style.transform  = `translateX(${tx}px)`;
+      });
+    }
+
+    function updateDots() {
+      dots.forEach((d, i) => d.classList.toggle('slider-dot--active', i === current));
+    }
+
+    function snapTo(idx) {
+      current = Math.max(0, Math.min(photos.length - 1, idx));
+      applyTx(-current * slider.clientWidth, true);
+      updateDots();
+    }
+
+    slider.addEventListener('touchstart', e => {
+      if (!isCarousel()) return;
+      startX   = e.touches[0].clientX;
+      startTx  = -current * slider.clientWidth;
+      dragging = true;
+      applyTx(startTx, false);
+    }, { passive: true });
+
+    slider.addEventListener('touchmove', e => {
+      if (!dragging) return;
+      applyTx(startTx + (e.touches[0].clientX - startX), false);
+    }, { passive: true });
+
+    slider.addEventListener('touchend', e => {
+      if (!dragging) return;
+      dragging = false;
+      const dx = e.changedTouches[0].clientX - startX;
+      if      (dx < -slider.clientWidth * 0.25) snapTo(current + 1);
+      else if (dx >  slider.clientWidth * 0.25) snapTo(current - 1);
+      else                                       snapTo(current);
+    }, { passive: true });
+
+    /* Reset transforms when resizing back to desktop */
+    window.addEventListener('resize', () => {
+      if (!isCarousel()) {
+        current = 0;
+        photos.forEach(p => { p.style.transform = ''; p.style.transition = ''; });
+        updateDots();
+      }
+    }, { passive: true });
+  });
+}());

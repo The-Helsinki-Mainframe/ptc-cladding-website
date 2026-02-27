@@ -499,6 +499,20 @@ ul { list-style: none; }
 }
 .project-row__photo:hover img { transform: scale(1.04); }
 
+/* ── Photo slider: desktop shows both photos in a 2-col inner grid ── */
+.project-photo-slider {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gutter);
+  grid-column: span 2;
+  position: relative;
+  overflow: hidden; /* clip photos to row boundary — prevents bleed into next row */
+}
+.project-photo-slider .project-row__photo {
+  height: 100%; /* fill the 360px grid row */
+}
+.slider-dots { display: none; } /* desktop: no dots */
+
 .project-row__info {
   padding: 2rem;
   display: flex;
@@ -1044,17 +1058,54 @@ ul { list-style: none; }
 
   .services__bento { grid-template-columns: 1fr; }
 
-  /* Projects: single column on mobile — photo on top, info below */
+  /* Projects: single column on mobile — slider on top, info below */
   .project-row {
     grid-template-columns: 1fr;
     height: auto;
   }
-  .project-row__photo {
+
+  /* Slider becomes a flex row; photos slide via JS translateX in pixels */
+  .project-photo-slider {
+    display: flex;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
     height: 260px;
+    grid-column: 1;
+    gap: 0;
+    touch-action: pan-y;
+    position: relative;
   }
+  .project-photo-slider .project-row__photo {
+    flex: 0 0 100%; /* exactly 100% of slider width — no shrink, no grow */
+    height: 100%;
+    border-radius: 0;
+  }
+  /* Show the second photo (hidden by default) */
   .project-row__photo--secondary {
-    display: none;
+    display: flex;
   }
+  /* Dot indicators — overlaid at bottom-centre of the photo */
+  .slider-dots {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 7px;
+    z-index: 10;
+    pointer-events: none;
+  }
+  .slider-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.45);
+    transition: background 0.25s;
+  }
+  .slider-dot--active {
+    background: #fff;
+  }
+
   .project-row__info {
     height: auto;
   }
