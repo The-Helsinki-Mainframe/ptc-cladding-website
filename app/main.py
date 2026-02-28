@@ -229,6 +229,18 @@ def api_contact(req: ContactRequest):
 async def privacy_page():
     return FileResponse(STATIC / "privacy.html")
 
+@app.get("/terms")
+async def terms_page():
+    return FileResponse(STATIC / "terms.html")
+
+from fastapi import Request
+from fastapi.responses import HTMLResponse
+
+@app.exception_handler(404)
+async def not_found(request: Request, exc):
+    with open(STATIC / "404.html") as f:
+        return HTMLResponse(f.read(), status_code=404)
+
 # Static files — mounted LAST (catches everything not matched above)
 # html=True → serves index.html for / and unknown paths (SPA behaviour)
 app.mount("/", StaticFiles(directory=str(STATIC), html=True), name="static")

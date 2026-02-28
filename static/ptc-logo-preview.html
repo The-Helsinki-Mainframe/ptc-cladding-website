@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PTC — Logo Use Cases</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #E8E5DF;
+      font-family: 'Space Grotesk', sans-serif;
+      padding: 64px 72px;
+    }
+
+    .page-label {
+      font-size: 9px;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: #B0ADA8;
+      margin-bottom: 64px;
+    }
+
+    .section-title {
+      font-size: 8.5px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #B0ADA8;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #CCC9C3;
+      margin-bottom: 4px;
+    }
+
+    .use-label {
+      font-size: 8px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #B0ADA8;
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    .gap { height: 52px; }
+
+    .row {
+      display: flex;
+      align-items: stretch;
+      margin-bottom: 3px;
+    }
+
+    .cell {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 52px 36px;
+      gap: 0;
+    }
+    .cell.dark   { background: #181512; }
+    .cell.white  { background: #FFFFFF; }
+    .cell.sand   { background: #E8E5DF; border: 1px solid #D0CDC8; }
+    .cell.narrow { flex: 0 0 220px; }
+    .cell.wide   { flex: 2; }
+
+    /* ═══════ LOGO SYSTEM ═══════ */
+
+    /* P mark shape (reused in every variant via inline SVG) */
+
+    .logo-unit {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .logo-word {
+      display: inline-block;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .p-glyph {
+      display: inline-block;
+      height: 1cap;
+      width: auto;
+      vertical-align: text-top;
+      margin-right: 0.01em;
+    }
+
+    .tc { display: inline; }
+
+    .logo-sub {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 300;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      line-height: 1;
+      display: block;
+    }
+
+    /* Sizes */
+    .xl  { font-size: 88px; }  .xl  .logo-sub { font-size: 13px;  margin-top: 8px; }
+    .lg  { font-size: 64px; }  .lg  .logo-sub { font-size: 10px;  margin-top: 6px; }
+    .md  { font-size: 42px; }  .md  .logo-sub { font-size: 7px;   margin-top: 4px; }
+    .sm  { font-size: 26px; }  .sm  .logo-sub { font-size: 5.5px; margin-top: 3px; letter-spacing: 0.16em; }
+    .xs  { font-size: 16px; }  .xs  .logo-sub { font-size: 4px;   margin-top: 2px; letter-spacing: 0.12em; }
+
+    /* Colour themes */
+    .dk .tc, .dk .logo-sub { color: #FFF; }
+    .lt .tc, .lt .logo-sub { color: #181512; }
+
+    /* Badge / mark-in-box */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #181512;
+      border-radius: 6px;
+    }
+    .badge.light-badge {
+      background: #FFFFFF;
+    }
+    .badge.sand-badge {
+      background: #E8E5DF;
+    }
+
+  </style>
+</head>
+<body>
+
+<p class="page-label">PTC Cladding — Logo Use Cases · Mark A</p>
+
+
+<!-- ══════════════════════════════════════
+     01  STANDALONE MARK
+     Avatar · Favicon · Stamp · Embossed
+══════════════════════════════════════ -->
+<p class="section-title">01 &nbsp;·&nbsp; Standalone mark &nbsp;— &nbsp;avatar · favicon · stamp · badge</p>
+
+<div class="row">
+
+  <!-- Icon on white -->
+  <div class="cell white narrow">
+    <svg width="96" height="118" viewBox="0 0 52 64" fill="none">
+      <path fill-rule="evenodd" clip-rule="evenodd"
+        d="M0 0 L52 0 L52 42 L15 42 L15 64 L0 64 Z M15 14 L40 14 L40 30 L15 30 Z"
+        fill="#181512"/>
+    </svg>
+    <p class="use-label">On white</p>
+  </div>
+
+  <!-- Icon on dark -->
+  <div class="cell dark narrow">
+    <svg width="96" height="118" viewBox="0 0 52 64" fill="none">
+      <path fill-rule="evenodd" clip-rule="evenodd"
+        d="M0 0 L52 0 L52 42 L15 42 L15 64 L0 64 Z M15 14 L40 14 L40 30 L15 30 Z"
+        fill="#FFFFFF"/>
+    </svg>
+    <p class="use-label" style="color:#666">On dark</p>
+  </div>
+
+  <!-- Badge: mark in a dark rounded square (e.g. app icon, avatar) -->
+  <div class="cell sand narrow">
+    <div class="badge" style="padding: 22px; border-radius: 20px;">
+      <svg width="72" height="88" viewBox="0 0 52 64" fill="none">
+        <path fill-rule="evenodd" clip-rule="evenodd"
+          d="M0 0 L52 0 L52 42 L15 42 L15 64 L0 64 Z M15 14 L40 14 L40 30 L15 30 Z"
+          fill="#FFFFFF"/>
+      </svg>
+    </div>
+    <p class="use-label">App icon / avatar</p>
+  </div>
+
+  <!-- Oversized standalone — poster / site hoarding -->
+  <div class="cell white wide">
+    <svg width="160" height="196" viewBox="0 0 52 64" fill="none">
+      <path fill-rule="evenodd" clip-rule="evenodd"
+        d="M0 0 L52 0 L52 42 L15 42 L15 64 L0 64 Z M15 14 L40 14 L40 30 L15 30 Z"
+        fill="#181512"/>
+    </svg>
+    <p class="use-label">Oversize — poster / hoarding</p>
+  </div>
+
+</div>
+
+
+<!-- ══════════════════════════════════════
+     02  [P]TC  (no descriptor)
+     Business cards · Site signage · Hi-vis
+══════════════════════════════════════ -->
+<div class="gap"></div>
+<p class="section-title">02 &nbsp;·&nbsp; [P]TC wordmark — no descriptor &nbsp;— &nbsp;business cards · hi-vis · signage</p>
+
+<div class="row">
+  <div class="cell white">
+    <div class="logo-unit lg lt">
+      <div class="logo-word">
+        <svg class="p-glyph" viewBox="0 0 52 64" fill="none">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M0 0 L52 0 L52 42 L15 42 L15 64 L0 64 Z M15 14 L40 14 L40 30 L15 30 Z"
+            fill="#181512"/>
+        </svg><span class="tc">TC</span>
+      </div>
+    </div>
+    <p class="use-label">Light</p>
+  </div>
+  <div class="cell dark">
+    <div class="logo-unit lg dk">
+      <div class="logo-word">
+        <svg class="p-glyph" viewBox="0 0 52 64" fill="none">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M0 0 L52 0 L52 42 L15 42 L15 64 L0 64 Z M15 14 L40 14 L40 30 L15 30 Z"
+            fill="#FFFFFF"/>
+        </svg><span class="tc">TC</span>
+      </div>
+    </div>
+    <p class="use-label" style="color:#555">Dark</p>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     03  [P]TC CLADDING  (horizontal)
+     Website header · Email footer · Letterhead
+══════════════════════════════════════ -->
+<div class="gap"></div>
+<p class="section-title">03 &nbsp;·&nbsp; [P]TC + Cladding — horizontal &nbsp;— &nbsp;website header · letterhead · email footer</p>
+
+<div class="row">
+  <div class="cell white">
+    <div class="logo-unit lg lt">
+      <div class="logo-word">
+        <svg class="p-glyph" viewBox="0 0 52 64" fill="none">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M0 0 L52 0 L52 42 L15 42 L15 64 L0 64 Z M15 14 L40 14 L40 30 L15 30 Z"
+            fill="#181512"/>
+        </svg><span class="tc">TC</span>
+      </div>
+      <span class="logo-sub">Cladding</span>
+    </div>
+    <p class="use-label">Light</p>
+  </div>
+  <div class="cell dark">
+    <div class="logo-unit lg dk">
+      <div class="logo-word">
+        <svg class="p-glyph" viewBox="0 0 52 64" fill="none">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M0 0 L52 0 L52 42 L15 42 L15 64 L0 64 Z M15 14 L40 14 L40 30 L15 30 Z"
+            fill="#FFFFFF"/>
+        </svg><span class="tc">TC</span>
+      </div>
+      <span class="logo-sub">Cladding</span>
+    </div>
+    <p class="use-label" style="color:#555">Dark</p>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     04  STACKED LOCKUP
+     Brochures · Proposals · Document covers
+══════════════════════════════════════ -->
+<div class="gap"></div>
+<p class="section-title">04 &nbsp;·&nbsp; Stacked — [P]TC over Cladding &nbsp;— &nbsp;brochures · proposals · document covers</p>
+
+<div class="row">
+  <div class="cell white">
+    <div class="logo-unit xl lt" style="align-items:flex-start;">
+      <div class="logo-word">
+        <svg class="p-glyph" viewBox="0 0 52 64" fill="none">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M0 0 L52 0 L52 42 L15 42 L15 64 L0 64 Z M15 14 L40 14 L40 30 L15 30 Z"
+            fill="#181512"/>
+        </svg><span class="tc">TC</span>
+      </div>
+      <span class="logo-sub">Cladding</span>
+    </div>
+    <p class="use-label">Light</p>
+  </div>
+  <div class="cell dark">
+    <div class="logo-unit xl dk" style="align-items:flex-start;">
+      <div class="logo-word">
+        <svg class="p-glyph" viewBox="0 0 52 64" fill="none">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M0 0 L52 0 L52 42 L15 42 L15 64 L0 64 Z M15 14 L40 14 L40 30 L15 30 Z"
+            fill="#FFFFFF"/>
+        </svg><span class="tc">TC</span>
+      </div>
+      <span class="logo-sub">Cladding</span>
+    </div>
+    <p class="use-label" style="color:#555">Dark</p>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     05  NAV / FOOTER / SMALL USE
+     Website nav · Email sig · Watermark
+══════════════════════════════════════ -->
+<div class="gap"></div>
+<p class="section-title">05 &nbsp;·&nbsp; Small use — nav · footer · email sig · watermark</p>
+
+<div class="row">
+
+  <div class="cell dark" style="flex-direction:row; align-items:center; justify-content:flex-start; gap: 52px; padding: 40px 52px;">
+    <div>
+      <div class="logo-unit sm dk">
+        <div class="logo-word">
+          <svg class="p-glyph" viewBox="0 0 52 64" fill="none">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M0 0 L52 0 L52 42 L15 42 L15 64 L0 64 Z M15 14 L40 14 L40 30 L15 30 Z" fill="#FFF"/>
+          </svg><span class="tc">TC</span>
+        </div>
+        <span class="logo-sub">Cladding</span>
+      </div>
+      <p class="use-label" style="color:#555; text-align:left; margin-top:8px;">Nav / header</p>
+    </div>
+    <div>
+      <div class="logo-unit sm dk">
+        <div class="logo-word">
+          <svg class="p-glyph" viewBox="0 0 52 64" fill="none">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M0 0 L52 0 L52 42 L15 42 L15 64 L0 64 Z M15 14 L40 14 L40 30 L15 30 Z" fill="#FFF"/>
+          </svg><span class="tc">TC</span>
+        </div>
+      </div>
+      <p class="use-label" style="color:#555; text-align:left; margin-top:8px;">Tight / no descriptor</p>
+    </div>
+    <div>
+      <svg width="28" height="34" viewBox="0 0 52 64" fill="none">
+        <path fill-rule="evenodd" clip-rule="evenodd"
+          d="M0 0 L52 0 L52 42 L15 42 L15 64 L0 64 Z M15 14 L40 14 L40 30 L15 30 Z" fill="#FFF"/>
+      </svg>
+      <p class="use-label" style="color:#555; text-align:left; margin-top:8px;">Mark only</p>
+    </div>
+  </div>
+
+  <div class="cell white" style="flex-direction:row; align-items:center; justify-content:flex-start; gap: 52px; padding: 40px 52px;">
+    <div>
+      <div class="logo-unit sm lt">
+        <div class="logo-word">
+          <svg class="p-glyph" viewBox="0 0 52 64" fill="none">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M0 0 L52 0 L52 42 L15 42 L15 64 L0 64 Z M15 14 L40 14 L40 30 L15 30 Z" fill="#181512"/>
+          </svg><span class="tc">TC</span>
+        </div>
+        <span class="logo-sub">Cladding</span>
+      </div>
+      <p class="use-label" style="text-align:left; margin-top:8px;">Nav / header</p>
+    </div>
+    <div>
+      <div class="logo-unit xs lt">
+        <div class="logo-word">
+          <svg class="p-glyph" viewBox="0 0 52 64" fill="none">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M0 0 L52 0 L52 42 L15 42 L15 64 L0 64 Z M15 14 L40 14 L40 30 L15 30 Z" fill="#181512"/>
+          </svg><span class="tc">TC</span>
+        </div>
+        <span class="logo-sub">Cladding</span>
+      </div>
+      <p class="use-label" style="text-align:left; margin-top:8px;">Footer / watermark</p>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- ══════════════════════════════════════
+     06  MARK ON PHOTO / HERO
+     Website hero overlay · Hoarding · PPE
+══════════════════════════════════════ -->
+<div class="gap"></div>
+<p class="section-title">06 &nbsp;·&nbsp; On photo / site hoarding / PPE — white reversed on image background</p>
+
+<div class="row">
+  <!-- Simulate a photo background with a dark overlay -->
+  <div class="cell" style="background: linear-gradient(135deg, #2a3a2e 0%, #1a1a1a 100%); position:relative; overflow:hidden; padding: 64px;">
+    <!-- Texture lines to simulate a cladding panel photo -->
+    <div style="position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent,transparent 48px,rgba(255,255,255,0.03) 48px,rgba(255,255,255,0.03) 50px);"></div>
+    <div style="position:relative; z-index:1;">
+      <div class="logo-unit lg dk">
+        <div class="logo-word">
+          <svg class="p-glyph" viewBox="0 0 52 64" fill="none">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M0 0 L52 0 L52 42 L15 42 L15 64 L0 64 Z M15 14 L40 14 L40 30 L15 30 Z"
+              fill="#FFFFFF"/>
+          </svg><span class="tc">TC</span>
+        </div>
+        <span class="logo-sub">Cladding</span>
+      </div>
+    </div>
+    <p class="use-label" style="color:#555; position:relative; z-index:1; margin-top:16px;">Photo / hoarding overlay</p>
+  </div>
+
+  <!-- Hi-vis / PPE — white on orange -->
+  <div class="cell narrow" style="background:#E8690A;">
+    <div class="logo-unit md dk" style="align-items:center;">
+      <div class="logo-word">
+        <svg class="p-glyph" viewBox="0 0 52 64" fill="none">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M0 0 L52 0 L52 42 L15 42 L15 64 L0 64 Z M15 14 L40 14 L40 30 L15 30 Z"
+            fill="#FFFFFF"/>
+        </svg><span class="tc">TC</span>
+      </div>
+    </div>
+    <p class="use-label" style="color:rgba(255,255,255,0.5); margin-top:10px;">Hi-vis / PPE</p>
+  </div>
+</div>
+
+
+</body>
+</html>
