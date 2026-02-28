@@ -3,11 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EL7CCMQPNZ"></script>
+  <!-- Google tag (gtag.js) — consent mode -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
+    // Default: deny analytics until consent given
+    gtag('consent', 'default', { analytics_storage: 'denied' });
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EL7CCMQPNZ"></script>
+  <script>
     gtag('js', new Date());
     gtag('config', 'G-EL7CCMQPNZ');
   </script>
@@ -509,7 +513,7 @@
   <footer class="footer">
     <div class="container footer__inner">
       <img src="assets/images/img-000.jpg" alt="PTC Cladding" class="footer__logo" />
-      <p class="footer__copy">© 2025 PTC Cladding. All rights reserved.</p>
+      <p class="footer__copy">© 2025 PTC Cladding. All rights reserved. &nbsp;|&nbsp; <a href="/privacy" style="color:rgba(255,255,255,0.4);text-decoration:none;" onmouseover="this.style.color='var(--orange)'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Privacy Policy</a></p>
       <div class="footer__links">
         <a href="mailto:info@ptcgr.com">info@ptcgr.com</a>
         <a href="tel:+37126953583">+371 26 953 583</a>
@@ -629,5 +633,30 @@
   </div>
 
   <script src="js/app.js?v=4"></script>
+  <!-- Cookie Banner -->
+  <div class="cookie-banner" id="cookieBanner" style="display:none;">
+    <p>We use analytics cookies to understand how visitors use this site. <a href="/privacy">Learn more</a></p>
+    <div class="cookie-banner__actions">
+      <button class="cookie-btn cookie-btn--decline" onclick="setCookieConsent(false)">Decline</button>
+      <button class="cookie-btn cookie-btn--accept" onclick="setCookieConsent(true)">Accept</button>
+    </div>
+  </div>
+  <script>
+    function setCookieConsent(accepted) {
+      localStorage.setItem('cookie_consent', accepted ? 'accepted' : 'declined');
+      document.getElementById('cookieBanner').style.display = 'none';
+      if (accepted) {
+        gtag('consent', 'update', { analytics_storage: 'granted' });
+      }
+    }
+    (function() {
+      var consent = localStorage.getItem('cookie_consent');
+      if (!consent) {
+        document.getElementById('cookieBanner').style.display = 'flex';
+      } else if (consent === 'accepted') {
+        gtag('consent', 'update', { analytics_storage: 'granted' });
+      }
+    })();
+  </script>
 </body>
 </html>

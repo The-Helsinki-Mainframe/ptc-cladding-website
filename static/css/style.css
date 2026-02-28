@@ -1132,3 +1132,38 @@ ul { list-style: none; }
   .modal__header, .modal__body { padding-left: 1.25rem; padding-right: 1.25rem; }
   .project-info__stats { grid-template-columns: 1fr 1fr; }
 }
+
+/* ── Cookie Banner ─────────────────────────────────────────── */
+.cookie-banner {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  background: #1a1a1a;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  z-index: 9999;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.7);
+}
+.cookie-banner p { margin: 0; line-height: 1.5; }
+.cookie-banner a { color: var(--orange); text-decoration: none; }
+.cookie-banner a:hover { text-decoration: underline; }
+.cookie-banner__actions { display: flex; gap: 0.75rem; flex-shrink: 0; }
+.cookie-btn {
+  padding: 0.45rem 1.1rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: opacity 0.2s;
+}
+.cookie-btn:hover { opacity: 0.85; }
+.cookie-btn--accept { background: var(--orange); color: #fff; }
+.cookie-btn--decline { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.7); }
+@media (max-width: 600px) {
+  .cookie-banner { flex-direction: column; align-items: flex-start; padding: 1rem 1.25rem; }
+}

@@ -225,6 +225,10 @@ def api_contact(req: ContactRequest):
     log.info("Contact: %s <%s>", req.name, req.email)
     return {"status": "ok"}
 
+@app.get("/privacy")
+async def privacy_page():
+    return FileResponse(STATIC / "privacy.html")
+
 # Static files — mounted LAST (catches everything not matched above)
 # html=True → serves index.html for / and unknown paths (SPA behaviour)
 app.mount("/", StaticFiles(directory=str(STATIC), html=True), name="static")
